@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="<?= lang ?>">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discovery — Employee Journey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ── DESIGN TOKENS ── */
+    :root {
+      --ciandt-coral:      #FA5A50;
+      --ciandt-deep-red:   #690037;
+      --ciandt-pink:       #FAB9FF;
+      --ciandt-navy:       #000050;
+      --ciandt-light-blue: #B4DCFA;
+      --ciandt-white:      #FFFFFF;
+      --ciandt-black:      #000000;
+      --ciandt-grey-light: #EEF0F3;
+      --ciandt-grey-mid:   #D2D4DC;
+      --ciandt-grey-dark:  #9A9EA6;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--ciandt-grey-light);
+      color: var(--ciandt-navy);
+      min-height: 100vh;
+    }
+
+    /* ── BRAND BAR ── */
+    .brand-bar {
+      background-color: var(--ciandt-navy);
+      padding: 10px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .brand-bar-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ciandt-white);
+      letter-spacing: 0.03em;
+      white-space: nowrap;
+    }
+
+    .brand-sep {
+      width: 1px;
+      height: 18px;
+      background-color: rgba(255,255,255,0.25);
+      flex-shrink: 0;
+    }
+
+    .brand-context {
+      font-size: 11px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      white-space: nowrap;
+    }
+
+    .brand-project {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--ciandt-white);
+      white-space: nowrap;
+    }
+
+    .internal-badge {
+      font-size: 10px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      border: 1px solid rgba(255,255,255,0.25);
+      padding: 3px 10px;
+      border-radius: 999px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    /* ── TAB NAV ── */
+    .tab-nav {
+      background-color: var(--ciandt-white);
+      padding: 0 32px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid var(--ciandt-grey-mid);
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+
+    .tab-item {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 14px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ciandt-grey-dark);
+      text-decoration: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .tab-item:hover { color: var(--ciandt-navy); }
+
+    .tab-item.active {
+      color: var(--ciandt-navy);
+      font-weight: 600;
+      border-bottom-color: var(--ciandt-coral);
+    }
+
+    .tab-spacer { flex: 1; min-width: 24px; }
+
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      background: var(--ciandt-grey-light);
+      border-radius: 999px;
+      padding: 3px;
+      gap: 2px;
+      flex-shrink: 0;
+    }
+
+    .lang-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      background: transparent;
+      color: var(--ciandt-grey-dark);
+      letter-spacing: 0.06em;
+      transition: all 0.2s;
+    }
+
+    .lang-btn.active {
+      background: var(--ciandt-navy);
+      color: var(--ciandt-white);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background-color: var(--ciandt-navy);
+      margin: 24px 32px 16px;
+      border-radius: 8px;
+      border-bottom: 3px solid var(--ciandt-coral);
+      padding: 32px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-shapes {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .hero-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ciandt-coral);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* REPLACE WITH PP FRAGMENT GLARE IN PRODUCTION */
+    .hero-title {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--ciandt-white);
+      line-height: 1.1;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-title .highlight { color: var(--ciandt-coral); }
+
+    .hero-subtitle {
+      font-size: 14px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.65);
+      max-width: 560px;
+      line-height: 1.65;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ── ACCORDION ── */
+    .accordion-container {
+      padding: 0 32px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .accordion-item {
+      background: var(--ciandt-white);
+      border-radius: 8px;
+      border: 1px solid var(--ciandt-grey-mid);
+      overflow: hidden;
+      transition: box-shadow 0.2s, border-color 0.2s;
+    }
+
+    .accordion-item:hover {
+      box-shadow: 0 2px 16px rgba(0,0,80,0.07);
+      border-color: var(--ciandt-grey-dark);
+    }
+
+    .accordion-item.open {
+      border-color: var(--ciandt-grey-dark);
+      box-shadow: 0 2px 16px rgba(0,0,80,0.07);
+    }
+
+    .accordion-header {
+      display: flex;
+      align-items: center;
+      padding: 18px 24px;
+      cursor: pointer;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .acc-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: 8px;
+      background: var(--ciandt-grey-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .acc-icon-wrap svg { width: 18px; height: 18px; }
+
+    .acc-text { flex: 1; min-width: 0; }
+
+    .acc-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ciandt-navy);
+      margin-bottom: 2px;
+    }
+
+    .acc-desc {
+      font-size: 12px;
+      color: var(--ciandt-grey-dark);
+      line-height: 1.45;
+    }
+
+    .acc-chevron {
+      width: 18px;
+      height: 18px;
+      color: var(--ciandt-grey-dark);
+      flex-shrink: 0;
+      transition: transform 0.25s ease;
+    }
+
+    .accordion-item.open .acc-chevron {
+      transform: rotate(180deg);
+      color: var(--ciandt-navy);
+    }
+
+    .accordion-body {
+      display: none;
+      padding: 0 24px 24px 78px;
+    }
+
+    .accordion-item.open .accordion-body { display: block; }
+
+    .accordion-body-inner {
+      padding-top: 16px;
+      border-top: 1px solid var(--ciandt-grey-light);
+      font-size: 14px;
+      color: var(--ciandt-grey-dark);
+      line-height: 1.6;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .brand-bar   { padding: 10px 16px; }
+      .brand-context { display: none; }
+      .hero        { margin: 16px; padding: 24px; }
+      .hero-title  { font-size: 28px; }
+      .accordion-container { padding: 0 16px 32px; }
+      .accordion-body { padding-left: 24px; }
+      .tab-nav     { padding: 0 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BRAND BAR -->
+  <header class="brand-bar">
+    <div class="brand-bar-left">
+      <span class="brand-name">CI&amp;T</span>
+      <div class="brand-sep"></div>
+      <span class="brand-context">Internal Communication</span>
+      <div class="brand-sep"></div>
+      <span class="brand-project" id="txt-project">Radar Chatbot · Employee Journey</span>
+    </div>
+    <span class="internal-badge" id="txt-badge">Internal use only</span>
+  </header>
+
+  <!-- TAB NAVIGATION -->
+  <nav class="tab-nav">
+    <a class="tab-item" href="?page=fases&lang=pt" id="tab-fases">
+      <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
+        <rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/>
+        <rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/>
+        <rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/>
+        <rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/>
+      </svg>
+      <span id="txt-tab-fases">Phases</span>
+    </a>
+    <a class="tab-item" href="?page=roadmap&lang=pt" id="tab-roadmap">
+      <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
+        <path d="M2 13 L5 5 L9 9 L13 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="13" cy="3" r="1.5" fill="currentColor"/>
+      </svg>
+      <span id="txt-tab-roadmap">Roadmap</span>
+    </a>
+    <a class="tab-item active" href="?page=discovery&lang=pt" id="tab-discovery">
+      <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
+        <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10 10 L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <span id="txt-tab-discovery">Discovery</span>
+    </a>
+    <div class="tab-spacer"></div>
+    <div class="lang-toggle">
+      <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">PT</button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">EN</button>
+    </div>
+  </nav>
+
+  <!-- HERO BANNER -->
+  <section class="hero">
+    <div class="hero-shapes" aria-hidden="true">
+      <svg style="position:absolute; right:-60px; top:-50px; width:260px; height:260px;">
+        <circle cx="130" cy="130" r="130" fill="var(--ciandt-coral)" opacity="0.07"/>
+      </svg>
+      <svg style="position:absolute; right:80px; bottom:-40px; width:160px; height:160px;">
+        <polygon points="80,0 160,160 0,160" fill="var(--ciandt-light-blue)" opacity="0.06"/>
+      </svg>
+      <svg style="position:absolute; right:-20px; top:40px; width:100px; height:100px;">
+        <circle cx="50" cy="50" r="50" fill="var(--ciandt-pink)" opacity="0.05"/>
+      </svg>
+    </div>
+    <div class="hero-label" id="txt-hero-label">RESEARCH · ANALYSIS</div>
+    <!-- REPLACE WITH PP FRAGMENT GLARE IN PRODUCTION -->
+    <h1 class="hero-title">
+      <span id="txt-hero-prefix">Project </span><span class="highlight" id="txt-hero-highlight">Discovery</span>
+    </h1>
+    <p class="hero-subtitle" id="txt-hero-sub">
+      Organize your research, data and hypotheses. Add your notes — insights are generated as you build this space.
+    </p>
+  </section>
+
+  <!-- ACCORDION SECTIONS -->
+  <main class="accordion-container">
+
+    <!-- 1. Context -->
+    <div class="accordion-item" id="acc-context">
+      <div class="accordion-header" onclick="toggle('acc-context')">
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <rect x="3" y="2" width="12" height="14" rx="2" stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <path d="M6 6h6M6 9h6M6 12h3.5" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc1-title">Context</div>
+          <div class="acc-desc"  id="txt-acc1-desc">Current state of the Radar Chatbot and what motivated this change</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner" id="txt-acc1-body">Content coming soon.</div>
+      </div>
+    </div>
+
+    <!-- 2. Data & Analysis -->
+    <div class="accordion-item" id="acc-data">
+      <div class="accordion-header" onclick="toggle('acc-data')">
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <rect x="2"  y="11" width="4" height="5" rx="1" fill="var(--ciandt-navy)"/>
+            <rect x="7"  y="7"  width="4" height="9" rx="1" fill="var(--ciandt-navy)"/>
+            <rect x="12" y="3"  width="4" height="13" rx="1" fill="var(--ciandt-navy)" opacity="0.45"/>
+            <path d="M2 16.5h14" stroke="var(--ciandt-navy)" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc2-title">Data &amp; Analysis</div>
+          <div class="acc-desc"  id="txt-acc2-desc">Metrics, conversation data, usage patterns and quantitative findings</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner" id="txt-acc2-body">Content coming soon.</div>
+      </div>
+    </div>
+
+    <!-- 3. Hypotheses -->
+    <div class="accordion-item" id="acc-hypo">
+      <div class="accordion-header" onclick="toggle('acc-hypo')">
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 2a5 5 0 0 1 3 9V13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2A5 5 0 0 1 9 2z" stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <path d="M7 16.5h4" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="9" cy="7" r="1" fill="var(--ciandt-coral)"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc3-title">Hypotheses</div>
+          <div class="acc-desc"  id="txt-acc3-desc">What you believe can be improved — gaps, friction points, initial ideas</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner" id="txt-acc3-body">Content coming soon.</div>
+      </div>
+    </div>
+
+    <!-- 4. Opportunities -->
+    <div class="accordion-item" id="acc-opps">
+      <div class="accordion-header" onclick="toggle('acc-opps')">
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="7"   stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <circle cx="9" cy="9" r="4.5" stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <circle cx="9" cy="9" r="2"   fill="var(--ciandt-coral)"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc4-title">Opportunities</div>
+          <div class="acc-desc"  id="txt-acc4-desc">Prioritized opportunities that emerged from the discovery work</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner" id="txt-acc4-body">Content coming soon.</div>
+      </div>
+    </div>
+
+    <!-- 5. Platform Comparison -->
+    <div class="accordion-item" id="acc-platform">
+      <div class="accordion-header" onclick="toggle('acc-platform')">
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 2v14" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M3 5h6M9 13h6" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+            <rect x="1"  y="3"  width="4" height="4" rx="1" stroke="var(--ciandt-navy)" stroke-width="1.2"/>
+            <rect x="13" y="11" width="4" height="4" rx="1" stroke="var(--ciandt-navy)" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc5-title">Platform Comparison</div>
+          <div class="acc-desc"  id="txt-acc5-desc">Side-by-side analysis of evaluated tools: Flow Infinity, Gemini, Notebook LM and Radar</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="accordion-body">
+        <div class="accordion-body-inner" id="txt-acc5-body">Content coming soon.</div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // ── i18n ──
+    const i18n = {
+      pt: {
+        'txt-project':        'Radar Chatbot · Employee Journey',
+        'txt-badge':          'Uso interno',
+        'txt-tab-fases':      'Fases',
+        'txt-tab-roadmap':    'Roadmap',
+        'txt-tab-discovery':  'Discovery',
+        'txt-hero-label':     'PESQUISA · ANÁLISE',
+        'txt-hero-prefix':    'Projeto ',
+        'txt-hero-highlight': 'Discovery',
+        'txt-hero-sub':       'Organize suas pesquisas, dados e hipóteses. Adicione suas anotações — os insights vão se construindo conforme você avança.',
+        'txt-acc1-title':     'Contexto',
+        'txt-acc1-desc':      'Estado atual do Radar Chatbot e o que motivou essa mudança',
+        'txt-acc1-body':      'Conteúdo em breve.',
+        'txt-acc2-title':     'Dados & Análise',
+        'txt-acc2-desc':      'Métricas, dados de conversas, padrões de uso e descobertas quantitativas',
+        'txt-acc2-body':      'Conteúdo em breve.',
+        'txt-acc3-title':     'Hipóteses',
+        'txt-acc3-desc':      'O que você acredita que pode ser melhorado — lacunas, pontos de fricção, ideias iniciais',
+        'txt-acc3-body':      'Conteúdo em breve.',
+        'txt-acc4-title':     'Oportunidades',
+        'txt-acc4-desc':      'Oportunidades priorizadas que emergiram do trabalho de discovery',
+        'txt-acc4-body':      'Conteúdo em breve.',
+        'txt-acc5-title':     'Comparação de Plataformas',
+        'txt-acc5-desc':      'Análise comparativa das ferramentas avaliadas: Flow Infinity, Gemini, Notebook LM e Radar',
+        'txt-acc5-body':      'Conteúdo em breve.',
+      },
+      en: {
+        'txt-project':        'Radar Chatbot · Employee Journey',
+        'txt-badge':          'Internal use only',
+        'txt-tab-fases':      'Phases',
+        'txt-tab-roadmap':    'Roadmap',
+        'txt-tab-discovery':  'Discovery',
+        'txt-hero-label':     'RESEARCH · ANALYSIS',
+        'txt-hero-prefix':    'Project ',
+        'txt-hero-highlight': 'Discovery',
+        'txt-hero-sub':       'Organize your research, data and hypotheses. Add your notes — insights are generated as you build this space.',
+        'txt-acc1-title':     'Context',
+        'txt-acc1-desc':      'Current state of the Radar Chatbot and what motivated this change',
+        'txt-acc1-body':      'Content coming soon.',
+        'txt-acc2-title':     'Data & Analysis',
+        'txt-acc2-desc':      'Metrics, conversation data, usage patterns and quantitative findings',
+        'txt-acc2-body':      'Content coming soon.',
+        'txt-acc3-title':     'Hypotheses',
+        'txt-acc3-desc':      'What you believe can be improved — gaps, friction points, initial ideas',
+        'txt-acc3-body':      'Content coming soon.',
+        'txt-acc4-title':     'Opportunities',
+        'txt-acc4-desc':      'Prioritized opportunities that emerged from the discovery work',
+        'txt-acc4-body':      'Content coming soon.',
+        'txt-acc5-title':     'Platform Comparison',
+        'txt-acc5-desc':      'Side-by-side analysis of evaluated tools: Flow Infinity, Gemini, Notebook LM and Radar',
+        'txt-acc5-body':      'Content coming soon.',
+      }
+    };
+
+    let lang = '<?= lang ?>' || 'pt';
+
+    function applyLang(l) {
+      lang = l;
+      const dict = i18n[l] || i18n['pt'];
+      Object.keys(dict).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = dict[id];
+      });
+      document.getElementById('btn-pt').classList.toggle('active', l === 'pt');
+      document.getElementById('btn-en').classList.toggle('active', l === 'en');
+      ['tab-fases','tab-roadmap','tab-discovery'].forEach(id => {
+        const a = document.getElementById(id);
+        if (a) a.href = a.href.replace(/lang=\w+/, 'lang=' + l);
+      });
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', l);
+        history.replaceState(null, '', url.toString());
+      } catch(e) {}
+    }
+
+    function setLang(l) { applyLang(l); }
+
+    function toggle(id) {
+      document.getElementById(id).classList.toggle('open');
+    }
+
+    applyLang(lang);
+  </script>
+
+</body>
+</html>
