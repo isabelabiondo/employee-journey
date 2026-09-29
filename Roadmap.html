@@ -109,6 +109,7 @@
     .gantt-phase-row .gantt-row-label { background: var(--ciandt-navy); color: var(--ciandt-white); font-size: 12px; font-weight: 600; }
     .gantt-phase-row:hover .gantt-row-label { background: var(--ciandt-navy); }
     .gantt-phase-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 999px; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 8px; flex-shrink: 0; }
+    .gantt-task-badge  { font-size: 8px; font-weight: 700; padding: 1px 6px; border-radius: 999px; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 6px; flex-shrink: 0; }
 
     /* Task row */
     .gantt-task-row { border-bottom: 1px solid var(--ciandt-grey-light); }
@@ -525,7 +526,10 @@
           const indent = task.isMilestone
             ? `<span class="milestone-dot"></span>`
             : `<span style="width:12px;flex-shrink:0;display:inline-block"></span>`;
-          bodyHtml += `<div class="gantt-row-label">${indent}<span class="label-text">${task.name}</span></div>`;
+          const taskBadge = task.status
+            ? `<span class="gantt-task-badge" style="${statusStyle(task.status)}">${statusLabel(task.status)}</span>`
+            : '';
+          bodyHtml += `<div class="gantt-row-label">${indent}<span class="label-text">${task.name}</span>${taskBadge}</div>`;
           // Bar area
           bodyHtml += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_TASK}px">`;
 
@@ -630,26 +634,26 @@
       launchDate: '2026-11-30',
       phases: [
         { id: 1, name: 'Phase 1 — Foundation', status: 'IN PROGRESS', tasks: [
-          { name: 'Employee journey mapping',         isMilestone: false, startDate: '2026-07-01', endDate: '2026-07-31' },
-          { name: 'Scope alignment with stakeholders',isMilestone: false, startDate: '2026-07-10', endDate: '2026-07-25' },
-          { name: 'PMO governance charter',           isMilestone: false, startDate: '2026-07-15', endDate: '2026-07-25' },
-          { name: 'Official project kickoff',         isMilestone: true,  startDate: '2026-07-31', endDate: null }
+          { name: 'Employee journey mapping',         isMilestone: false, status: 'IN PROGRESS', startDate: '2026-07-01', endDate: '2026-07-31' },
+          { name: 'Scope alignment with stakeholders',isMilestone: false, status: 'IN PROGRESS', startDate: '2026-07-10', endDate: '2026-07-25' },
+          { name: 'PMO governance charter',           isMilestone: false, status: 'IN PROGRESS', startDate: '2026-07-15', endDate: '2026-07-25' },
+          { name: 'Official project kickoff',         isMilestone: true,  status: 'IN PROGRESS', startDate: '2026-07-31', endDate: null }
         ]},
         { id: 2, name: 'Phase 2 — Expansion', status: 'PLANNED', tasks: [
-          { name: 'Onboarding flows in chatbot',  isMilestone: false, startDate: '2026-09-01', endDate: '2026-10-07' },
-          { name: 'Benefits & FAQ flows',         isMilestone: false, startDate: '2026-09-15', endDate: '2026-10-07' },
-          { name: 'Communication plan — Phase 2', isMilestone: false, startDate: '2026-09-01', endDate: '2026-09-21' },
-          { name: 'Phase 2 launch',               isMilestone: true,  startDate: '2026-10-07', endDate: null }
+          { name: 'Onboarding flows in chatbot',  isMilestone: false, status: 'PLANNED', startDate: '2026-09-01', endDate: '2026-10-07' },
+          { name: 'Benefits & FAQ flows',         isMilestone: false, status: 'PLANNED', startDate: '2026-09-15', endDate: '2026-10-07' },
+          { name: 'Communication plan — Phase 2', isMilestone: false, status: 'PLANNED', startDate: '2026-09-01', endDate: '2026-09-21' },
+          { name: 'Phase 2 launch',               isMilestone: true,  status: 'PLANNED', startDate: '2026-10-07', endDate: null }
         ]},
         { id: 3, name: 'Phase 3 — Depth', status: 'PLANNED', tasks: [
-          { name: 'System integrations (PTO, payroll)', isMilestone: false, startDate: '2026-10-18', endDate: '2026-11-23' },
-          { name: 'Career & development flows',         isMilestone: false, startDate: '2026-10-18', endDate: '2026-11-23' },
-          { name: 'Phase 3 launch',                     isMilestone: true,  startDate: '2026-11-23', endDate: null }
+          { name: 'System integrations (PTO, payroll)', isMilestone: false, status: 'PLANNED', startDate: '2026-10-18', endDate: '2026-11-23' },
+          { name: 'Career & development flows',         isMilestone: false, status: 'PLANNED', startDate: '2026-10-18', endDate: '2026-11-23' },
+          { name: 'Phase 3 launch',                     isMilestone: true,  status: 'PLANNED', startDate: '2026-11-23', endDate: null }
         ]},
         { id: 4, name: 'Phase 4 — Sensitive', status: 'TO BE DEFINED', tasks: [
-          { name: 'Sensitive flow mapping',        isMilestone: false, startDate: null, endDate: null },
-          { name: 'Legal & compliance validation', isMilestone: false, startDate: null, endDate: null },
-          { name: 'Phase 4 launch',                isMilestone: true,  startDate: null, endDate: null }
+          { name: 'Sensitive flow mapping',        isMilestone: false, status: 'TO BE DEFINED', startDate: null, endDate: null },
+          { name: 'Legal & compliance validation', isMilestone: false, status: 'TO BE DEFINED', startDate: null, endDate: null },
+          { name: 'Phase 4 launch',                isMilestone: true,  status: 'TO BE DEFINED', startDate: null, endDate: null }
         ]}
       ]
     };
