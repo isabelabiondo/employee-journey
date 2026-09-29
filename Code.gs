@@ -25,6 +25,7 @@ function doGet(e) {
     const template = HtmlService.createTemplateFromFile(templateName);
     template.lang        = lang;
     template.currentPage = page;
+    try { template.serviceUrl = ScriptApp.getService().getUrl(); } catch(e) { template.serviceUrl = ''; }
 
     return template.evaluate()
       .setTitle('Employee Journey — CI&T')
@@ -35,6 +36,7 @@ function doGet(e) {
     const fallback = HtmlService.createTemplateFromFile('Discovery');
     fallback.lang        = lang;
     fallback.currentPage = 'discovery';
+    try { fallback.serviceUrl = ScriptApp.getService().getUrl(); } catch(e) { fallback.serviceUrl = ''; }
 
     return fallback.evaluate()
       .setTitle('Employee Journey — CI&T')
