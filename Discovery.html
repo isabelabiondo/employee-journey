@@ -137,23 +137,14 @@
 
   <!-- TAB NAVIGATION -->
   <nav class="tab-nav">
-    <a class="tab-item" href="#" id="tab-fases">
-      <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
-        <rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/>
-        <rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/>
-        <rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/>
-        <rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/>
-      </svg>
-      <span id="txt-tab-fases">Phases</span>
-    </a>
-    <a class="tab-item" href="#" id="tab-roadmap">
+    <a class="tab-item" href="?page=roadmap&lang=pt" id="tab-roadmap">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
         <path d="M2 13 L5 5 L9 9 L13 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         <circle cx="13" cy="3" r="1.5" fill="currentColor"/>
       </svg>
       <span id="txt-tab-roadmap">Roadmap</span>
     </a>
-    <a class="tab-item active" href="#" id="tab-discovery">
+    <a class="tab-item active" href="?page=discovery&lang=pt" id="tab-discovery">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
         <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
         <path d="M10 10 L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -193,47 +184,108 @@
   <!-- ACCORDION SECTIONS -->
   <main class="accordion-container">
 
+    <!-- 1. Context -->
     <div class="accordion-item" id="acc-context">
       <div class="accordion-header" onclick="toggle('acc-context')">
-        <div class="acc-icon-wrap"><svg viewBox="0 0 18 18" fill="none"><rect x="3" y="2" width="12" height="14" rx="2" stroke="var(--ciandt-navy)" stroke-width="1.4"/><path d="M6 6h6M6 9h6M6 12h3.5" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/></svg></div>
-        <div class="acc-text"><div class="acc-title" id="txt-acc1-title">Context</div><div class="acc-desc" id="txt-acc1-desc">Current state of the Radar Chatbot and what motivated this change</div></div>
-        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none"><path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <rect x="3" y="2" width="12" height="14" rx="2" stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <path d="M6 6h6M6 9h6M6 12h3.5" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc1-title">Context</div>
+          <div class="acc-desc" id="txt-acc1-desc">Current state of the Radar Chatbot and what motivated this change</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
       <div class="accordion-body" id="body-context"></div>
     </div>
 
+    <!-- 2. Data & Analysis -->
     <div class="accordion-item" id="acc-data">
       <div class="accordion-header" onclick="toggle('acc-data')">
-        <div class="acc-icon-wrap"><svg viewBox="0 0 18 18" fill="none"><rect x="2" y="11" width="4" height="5" rx="1" fill="var(--ciandt-navy)"/><rect x="7" y="7" width="4" height="9" rx="1" fill="var(--ciandt-navy)"/><rect x="12" y="3" width="4" height="13" rx="1" fill="var(--ciandt-navy)" opacity="0.45"/><path d="M2 16.5h14" stroke="var(--ciandt-navy)" stroke-width="1" stroke-linecap="round"/></svg></div>
-        <div class="acc-text"><div class="acc-title" id="txt-acc2-title">Data &amp; Analysis</div><div class="acc-desc" id="txt-acc2-desc">Metrics, conversation data, usage patterns and quantitative findings</div></div>
-        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none"><path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <rect x="2" y="11" width="4" height="5" rx="1" fill="var(--ciandt-navy)"/>
+            <rect x="7" y="7" width="4" height="9" rx="1" fill="var(--ciandt-navy)"/>
+            <rect x="12" y="3" width="4" height="13" rx="1" fill="var(--ciandt-navy)" opacity="0.45"/>
+            <path d="M2 16.5h14" stroke="var(--ciandt-navy)" stroke-width="1" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc2-title">Data &amp; Analysis</div>
+          <div class="acc-desc" id="txt-acc2-desc">Metrics, conversation data, usage patterns and quantitative findings</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
       <div class="accordion-body" id="body-data"></div>
     </div>
 
+    <!-- 3. Hypotheses -->
     <div class="accordion-item" id="acc-hypo">
       <div class="accordion-header" onclick="toggle('acc-hypo')">
-        <div class="acc-icon-wrap"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2a5 5 0 0 1 3 9V13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2A5 5 0 0 1 9 2z" stroke="var(--ciandt-navy)" stroke-width="1.4"/><path d="M7 16.5h4" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/><circle cx="9" cy="7" r="1" fill="var(--ciandt-coral)"/></svg></div>
-        <div class="acc-text"><div class="acc-title" id="txt-acc3-title">Hypotheses</div><div class="acc-desc" id="txt-acc3-desc">What you believe can be improved — gaps, friction points, initial ideas</div></div>
-        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none"><path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 2a5 5 0 0 1 3 9V13a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1v-2A5 5 0 0 1 9 2z" stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <path d="M7 16.5h4" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+            <circle cx="9" cy="7" r="1" fill="var(--ciandt-coral)"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc3-title">Hypotheses</div>
+          <div class="acc-desc" id="txt-acc3-desc">What you believe can be improved — gaps, friction points, initial ideas</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
       <div class="accordion-body" id="body-hypo"></div>
     </div>
 
+    <!-- 4. Opportunities -->
     <div class="accordion-item" id="acc-opps">
       <div class="accordion-header" onclick="toggle('acc-opps')">
-        <div class="acc-icon-wrap"><svg viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="7" stroke="var(--ciandt-navy)" stroke-width="1.4"/><circle cx="9" cy="9" r="4.5" stroke="var(--ciandt-navy)" stroke-width="1.4"/><circle cx="9" cy="9" r="2" fill="var(--ciandt-coral)"/></svg></div>
-        <div class="acc-text"><div class="acc-title" id="txt-acc4-title">Opportunities</div><div class="acc-desc" id="txt-acc4-desc">Prioritized opportunities that emerged from the discovery work</div></div>
-        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none"><path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="7" stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <circle cx="9" cy="9" r="4.5" stroke="var(--ciandt-navy)" stroke-width="1.4"/>
+            <circle cx="9" cy="9" r="2" fill="var(--ciandt-coral)"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc4-title">Opportunities</div>
+          <div class="acc-desc" id="txt-acc4-desc">Prioritized opportunities that emerged from the discovery work</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
       <div class="accordion-body" id="body-opps"></div>
     </div>
 
+    <!-- 5. Platform Comparison -->
     <div class="accordion-item" id="acc-platform">
       <div class="accordion-header" onclick="toggle('acc-platform')">
-        <div class="acc-icon-wrap"><svg viewBox="0 0 18 18" fill="none"><path d="M9 2v14" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/><path d="M3 5h6M9 13h6" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/><rect x="1" y="3" width="4" height="4" rx="1" stroke="var(--ciandt-navy)" stroke-width="1.2"/><rect x="13" y="11" width="4" height="4" rx="1" stroke="var(--ciandt-navy)" stroke-width="1.2"/></svg></div>
-        <div class="acc-text"><div class="acc-title" id="txt-acc5-title">Platform Comparison</div><div class="acc-desc" id="txt-acc5-desc">Side-by-side analysis of evaluated tools: Flow Infinity, Gemini, Notebook LM and Radar</div></div>
-        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none"><path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="acc-icon-wrap">
+          <svg viewBox="0 0 18 18" fill="none">
+            <path d="M9 2v14" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+            <path d="M3 5h6M9 13h6" stroke="var(--ciandt-navy)" stroke-width="1.4" stroke-linecap="round"/>
+            <rect x="1" y="3" width="4" height="4" rx="1" stroke="var(--ciandt-navy)" stroke-width="1.2"/>
+            <rect x="13" y="11" width="4" height="4" rx="1" stroke="var(--ciandt-navy)" stroke-width="1.2"/>
+          </svg>
+        </div>
+        <div class="acc-text">
+          <div class="acc-title" id="txt-acc5-title">Platform Comparison</div>
+          <div class="acc-desc" id="txt-acc5-desc">Side-by-side analysis of evaluated tools: Flow Infinity, Gemini, Notebook LM and Radar</div>
+        </div>
+        <svg class="acc-chevron" viewBox="0 0 18 18" fill="none">
+          <path d="M4.5 7l4.5 4.5L13.5 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
       </div>
       <div class="accordion-body" id="body-platform"></div>
     </div>
@@ -241,39 +293,75 @@
   </main>
 
   <script>
+    // ── UI STRINGS ─────────────────────────────────────────────────────
     const ui = {
       pt: {
-        'txt-project':'Radar Chatbot · Employee Journey','txt-badge':'Uso interno',
-        'txt-tab-fases':'Fases','txt-tab-roadmap':'Roadmap','txt-tab-discovery':'Discovery',
-        'txt-hero-label':'PESQUISA · ANÁLISE','txt-hero-prefix':'Projeto ','txt-hero-highlight':'Discovery',
-        'txt-hero-sub':'Organize suas pesquisas, dados e hipóteses. Adicione suas anotações — os insights vão se construindo conforme você avança.',
-        'txt-acc1-title':'Contexto','txt-acc1-desc':'Estado atual do Radar Chatbot e o que motivou essa mudança',
-        'txt-acc2-title':'Dados & Análise','txt-acc2-desc':'Métricas, dados de conversas, padrões de uso e descobertas quantitativas',
-        'txt-acc3-title':'Hipóteses','txt-acc3-desc':'O que você acredita que pode ser melhorado — lacunas, pontos de fricção, ideias iniciais',
-        'txt-acc4-title':'Oportunidades','txt-acc4-desc':'Oportunidades priorizadas que emergiram do trabalho de discovery',
-        'txt-acc5-title':'Comparação de Plataformas','txt-acc5-desc':'Análise comparativa das ferramentas avaliadas: Flow Infinity, Gemini, Notebook LM e Radar',
-        'notes-label':'SUAS ANOTAÇÕES','edit-btn':'Editar','save-btn':'Salvar',
-        'placeholder':'Cole suas pesquisas, dados ou ideias aqui...','insights-label':'INSIGHTS',
-        'comp-note':'Gem: descartado por ser muito específico',
-        'row-pros':'✅ Vantagens','row-cons':'🚫 Desvantagens','row-pricing':'💰 Preço','row-timing':'🕐 Prazo','row-roadmap':'🗺️ Roadmap'
+        'txt-project':       'Radar Chatbot · Employee Journey',
+        'txt-badge':         'Uso interno',
+        'txt-tab-roadmap':   'Roadmap',
+        'txt-tab-discovery': 'Discovery',
+        'txt-hero-label':    'PESQUISA · ANÁLISE',
+        'txt-hero-prefix':   'Projeto ',
+        'txt-hero-highlight':'Discovery',
+        'txt-hero-sub':      'Organize suas pesquisas, dados e hipóteses. Adicione suas anotações — os insights vão se construindo conforme você avança.',
+        'txt-acc1-title':    'Contexto',
+        'txt-acc1-desc':     'Estado atual do Radar Chatbot e o que motivou essa mudança',
+        'txt-acc2-title':    'Dados & Análise',
+        'txt-acc2-desc':     'Métricas, dados de conversas, padrões de uso e descobertas quantitativas',
+        'txt-acc3-title':    'Hipóteses',
+        'txt-acc3-desc':     'O que você acredita que pode ser melhorado — lacunas, pontos de fricção, ideias iniciais',
+        'txt-acc4-title':    'Oportunidades',
+        'txt-acc4-desc':     'Oportunidades priorizadas que emergiram do trabalho de discovery',
+        'txt-acc5-title':    'Comparação de Plataformas',
+        'txt-acc5-desc':     'Análise comparativa das ferramentas avaliadas: Flow Infinity, Gemini, Notebook LM e Radar',
+        'notes-label':       'SUAS ANOTAÇÕES',
+        'edit-btn':          'Editar',
+        'save-btn':          'Salvar',
+        'placeholder':       'Cole suas pesquisas, dados ou ideias aqui...',
+        'insights-label':    'INSIGHTS',
+        'comp-note':         'Gem: descartado por ser muito específico',
+        'row-pros':          '✅ Vantagens',
+        'row-cons':          '🚫 Desvantagens',
+        'row-pricing':       '💰 Preço',
+        'row-timing':        '🕐 Prazo',
+        'row-roadmap':       '🗺️ Roadmap',
       },
       en: {
-        'txt-project':'Radar Chatbot · Employee Journey','txt-badge':'Internal use only',
-        'txt-tab-fases':'Phases','txt-tab-roadmap':'Roadmap','txt-tab-discovery':'Discovery',
-        'txt-hero-label':'RESEARCH · ANALYSIS','txt-hero-prefix':'Project ','txt-hero-highlight':'Discovery',
-        'txt-hero-sub':'Organize your research, data and hypotheses. Add your notes — insights are generated as you build this space.',
-        'txt-acc1-title':'Context','txt-acc1-desc':'Current state of the Radar Chatbot and what motivated this change',
-        'txt-acc2-title':'Data & Analysis','txt-acc2-desc':'Metrics, conversation data, usage patterns and quantitative findings',
-        'txt-acc3-title':'Hypotheses','txt-acc3-desc':'What you believe can be improved — gaps, friction points, initial ideas',
-        'txt-acc4-title':'Opportunities','txt-acc4-desc':'Prioritized opportunities that emerged from the discovery work',
-        'txt-acc5-title':'Platform Comparison','txt-acc5-desc':'Side-by-side analysis of evaluated tools: Flow Infinity, Gemini, Notebook LM and Radar',
-        'notes-label':'YOUR NOTES','edit-btn':'Edit','save-btn':'Save',
-        'placeholder':'Paste your research, data, or ideas here...','insights-label':'INSIGHTS',
-        'comp-note':'Gem: Dismissed — too specific for general use',
-        'row-pros':'✅ Pros','row-cons':'🚫 Cons','row-pricing':'💰 Pricing','row-timing':'🕐 Timing','row-roadmap':'🗺️ Roadmap'
+        'txt-project':       'Radar Chatbot · Employee Journey',
+        'txt-badge':         'Internal use only',
+        'txt-tab-roadmap':   'Roadmap',
+        'txt-tab-discovery': 'Discovery',
+        'txt-hero-label':    'RESEARCH · ANALYSIS',
+        'txt-hero-prefix':   'Project ',
+        'txt-hero-highlight':'Discovery',
+        'txt-hero-sub':      'Organize your research, data and hypotheses. Add your notes — insights are generated as you build this space.',
+        'txt-acc1-title':    'Context',
+        'txt-acc1-desc':     'Current state of the Radar Chatbot and what motivated this change',
+        'txt-acc2-title':    'Data & Analysis',
+        'txt-acc2-desc':     'Metrics, conversation data, usage patterns and quantitative findings',
+        'txt-acc3-title':    'Hypotheses',
+        'txt-acc3-desc':     'What you believe can be improved — gaps, friction points, initial ideas',
+        'txt-acc4-title':    'Opportunities',
+        'txt-acc4-desc':     'Prioritized opportunities that emerged from the discovery work',
+        'txt-acc5-title':    'Platform Comparison',
+        'txt-acc5-desc':     'Side-by-side analysis of evaluated tools: Flow Infinity, Gemini, Notebook LM and Radar',
+        'notes-label':       'YOUR NOTES',
+        'edit-btn':          'Edit',
+        'save-btn':          'Save',
+        'placeholder':       'Paste your research, data, or ideas here...',
+        'insights-label':    'INSIGHTS',
+        'comp-note':         'Gem: Dismissed — too specific for general use',
+        'row-pros':          '✅ Pros',
+        'row-cons':          '🚫 Cons',
+        'row-pricing':       '💰 Pricing',
+        'row-timing':        '🕐 Timing',
+        'row-roadmap':       '🗺️ Roadmap',
       }
     };
 
+    // ── SECTION CONTENT ───────────────────────────────────────────────
+    // Notes are always in PT (user's raw notes).
+    // Insights are bilingual.
     const sections = {
       context: {
         notes: `O Radar Chatbot completou 1 ano em operação. O contrato atual vence em novembro/26. Custo atual: ~R$22k/mês. O chatbot opera dentro do Google Chat com mensageria ativa e dashboard de dados.
@@ -398,97 +486,196 @@ Manutenção alternativa (Notebook LM / Gemini):
       }
     };
 
+    // ── COMPARISON TABLE DATA ─────────────────────────────────────────
     const compRows = [
-      { key:'row-pros', flow:'Complete with active messaging\nCould be developed for messaging only\nPotential CI&T shelf product for other clients\nLow-code maintenance\nInside Google Chat', gemini:'Well-elaborated answers\nReads from received emails and chats\nInside Google Chat', nb:'Date filter\nAutonomous document editing by areas\nWell-elaborated answers\nIntegrated analytics (users & queries)\nConnects to the internet\nSuggests questions', radar:'Active messaging\nInside Google Chat\nData dashboard' },
-      { key:'row-cons', flow:'Is the investment worth it compared to the other options?', gemini:'No date filter\nNo active messaging\nFallback for content not in user\'s drive\nNo analytics data\nNo control over responses', nb:'Up to 300 documents\nNo active messaging\nFallback for content not in database\nRequires document restructuring\nSlightly slow to respond', radar:'Delivery gap vs. expectation\nLow-quality answers\nHigh fallback rate\nDifficult data access\nDoes not recognize synonyms\nNo prompt autonomy' },
-      { key:'row-pricing', flow:'TCE: senior dev for 6 months', gemini:'Consultation: free\nMessaging: to be developed', nb:'Consultation: free\nMessaging: to be developed', radar:'~R$ 22k/month' },
-      { key:'row-timing', flow:'6 months of implementation', gemini:'1 month of implementation', nb:'1 month of implementation', radar:'Contract ends Nov/26' },
-      { key:'row-roadmap', flow:'Option 1: Dec/26\nOption 2: Jun/27', gemini:'01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication', nb:'01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication', radar:'Ongoing' }
+      {
+        key: 'row-pros',
+        flow:   'Complete with active messaging\nCould be developed for messaging only\nPotential CI&T shelf product for other clients\nLow-code maintenance\nInside Google Chat',
+        gemini: 'Well-elaborated answers\nReads from received emails and chats\nInside Google Chat',
+        nb:     'Date filter\nAutonomous document editing by areas\nWell-elaborated answers\nIntegrated analytics (users & queries)\nConnects to the internet\nSuggests questions',
+        radar:  'Active messaging\nInside Google Chat\nData dashboard'
+      },
+      {
+        key: 'row-cons',
+        flow:   'Is the investment worth it compared to the other options?',
+        gemini: 'No date filter\nNo active messaging\nFallback for content not in user\'s drive\nNo analytics data\nNo control over responses',
+        nb:     'Up to 300 documents\nNo active messaging\nFallback for content not in database\nRequires document restructuring\nSlightly slow to respond',
+        radar:  'Delivery gap vs. expectation\nLow-quality answers\nHigh fallback rate\nDifficult data access\nDoes not recognize synonyms\nNo prompt autonomy'
+      },
+      {
+        key: 'row-pricing',
+        flow:   'TCE: senior dev for 6 months',
+        gemini: 'Consultation: free\nMessaging: to be developed',
+        nb:     'Consultation: free\nMessaging: to be developed',
+        radar:  '~R$ 22k/month'
+      },
+      {
+        key: 'row-timing',
+        flow:   '6 months of implementation',
+        gemini: '1 month of implementation',
+        nb:     '1 month of implementation',
+        radar:  'Contract ends Nov/26'
+      },
+      {
+        key: 'row-roadmap',
+        flow:   'Option 1: Dec/26\nOption 2: Jun/27',
+        gemini: '01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication',
+        nb:     '01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication',
+        radar:  'Ongoing'
+      }
     ];
 
-    // ── STATE ──────────────────────────────────────────────────────────
+    // ── STATE ─────────────────────────────────────────────────────────
     const BASE_URL = '<?= serviceUrl ?>';
     let currentLang = '<?= lang ?>' || 'pt';
+
+    // Edit mode: false = display, true = editing
     const editMode  = { context: false, data: false, hypo: false, opps: true };
-    const notesMem  = { context: sections.context.notes, data: sections.data.notes, hypo: sections.hypo.notes, opps: '' };
+    const notesMem  = {
+      context: sections.context.notes,
+      data:    sections.data.notes,
+      hypo:    sections.hypo.notes,
+      opps:    sections.opps.notes
+    };
 
-    function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-    function t(key) { return (ui[currentLang]&&ui[currentLang][key])||(ui.en&&ui.en[key])||key; }
-
-    function renderBody(sectionId) {
-      const el = document.getElementById('body-'+sectionId);
-      if (!el) return;
-      if (sectionId === 'platform') { el.innerHTML = buildTable(); return; }
-      const sec = sections[sectionId]; if (!sec) return;
-      const content = notesMem[sectionId]||'', isEditing = editMode[sectionId];
-      let h = '<div class="notes-section"><div class="notes-header"><span class="notes-label">'+t('notes-label')+'</span>';
-      if (content && !isEditing) h += '<button class="edit-btn" onclick="startEdit(\''+sectionId+'\')">'+t('edit-btn')+'</button>';
-      h += '</div>';
-      if (isEditing) {
-        h += '<textarea class="notes-textarea" id="notes-ta-'+sectionId+'" placeholder="'+esc(t('placeholder'))+'">'+esc(content)+'</textarea>';
-        h += '<button class="save-btn" onclick="saveNotes(\''+sectionId+'\')">'+t('save-btn')+'</button>';
-      } else {
-        h += '<div class="notes-display">'+esc(content)+'</div>';
-      }
-      h += '</div>';
-      const list = sec.insights&&sec.insights[currentLang];
-      if (list&&list.length) {
-        h += '<div class="insights-section"><span class="insights-label">'+t('insights-label')+'</span><ul class="insights-list">';
-        list.forEach(item => { h += '<li><span class="insights-dot">●</span><span>'+esc(item)+'</span></li>'; });
-        h += '</ul></div>';
-      }
-      el.innerHTML = h;
+    // ── HELPERS ───────────────────────────────────────────────────────
+    function esc(s) {
+      return String(s)
+        .replace(/&/g,'&amp;')
+        .replace(/</g,'&lt;')
+        .replace(/>/g,'&gt;')
+        .replace(/"/g,'&quot;');
     }
 
+    function t(key) {
+      return (ui[currentLang] && ui[currentLang][key]) || (ui.en && ui.en[key]) || key;
+    }
+
+    // ── RENDER BODY ───────────────────────────────────────────────────
+    function renderBody(sectionId) {
+      const el = document.getElementById('body-' + sectionId);
+      if (!el) return;
+
+      // Platform Comparison: table only
+      if (sectionId === 'platform') {
+        el.innerHTML = buildTable();
+        return;
+      }
+
+      const sec = sections[sectionId];
+      if (!sec) return;
+
+      let html = '';
+      const content  = notesMem[sectionId] || '';
+      const isEditing = editMode[sectionId];
+
+      // Notes
+      html += '<div class="notes-section">';
+      html += '<div class="notes-header">';
+      html += `<span class="notes-label">${t('notes-label')}</span>`;
+      if (content && !isEditing) {
+        html += `<button class="edit-btn" onclick="startEdit('${sectionId}')">${t('edit-btn')}</button>`;
+      }
+      html += '</div>';
+
+      if (isEditing) {
+        html += `<textarea class="notes-textarea" id="notes-ta-${sectionId}" placeholder="${esc(t('placeholder'))}">${esc(content)}</textarea>`;
+        html += `<button class="save-btn" onclick="saveNotes('${sectionId}')">${t('save-btn')}</button>`;
+      } else {
+        html += `<div class="notes-display">${esc(content)}</div>`;
+      }
+      html += '</div>';
+
+      // Insights
+      const list = sec.insights && sec.insights[currentLang];
+      if (list && list.length) {
+        html += '<div class="insights-section">';
+        html += `<span class="insights-label">${t('insights-label')}</span>`;
+        html += '<ul class="insights-list">';
+        list.forEach(item => {
+          html += `<li><span class="insights-dot">●</span><span>${esc(item)}</span></li>`;
+        });
+        html += '</ul></div>';
+      }
+
+      el.innerHTML = html;
+    }
+
+    // ── BUILD COMPARISON TABLE ────────────────────────────────────────
     function buildTable() {
       let h = '<div class="comparison-wrapper"><table class="comparison-table"><thead><tr>';
-      h += '<th class="th-empty"></th><th class="th-flow">Flow Infinity<br><small style="font-weight:400;opacity:0.85">Q&amp;A + Messaging</small></th>';
+      h += '<th class="th-empty"></th>';
+      h += '<th class="th-flow">Flow Infinity<br><small style="font-weight:400;opacity:0.85">Q&amp;A + Messaging</small></th>';
       h += '<th class="th-gemini">Gemini<br><small style="font-weight:400;opacity:0.85">Q&amp;A only</small></th>';
       h += '<th class="th-nb">Notebook LM<br><small style="font-weight:400;opacity:0.85">Q&amp;A only</small></th>';
       h += '<th class="th-radar">Radar<br><small style="font-weight:400;opacity:0.85">Q&amp;A + Messaging</small></th>';
       h += '</tr></thead><tbody>';
+
       compRows.forEach(row => {
-        h += '<tr><td class="td-label">'+t(row.key)+'</td>';
-        ['flow','gemini','nb','radar'].forEach(c => { h += '<td>'+row[c].split('\n').map(l=>esc(l)).join('<br>')+'</td>'; });
+        h += '<tr>';
+        h += `<td class="td-label">${t(row.key)}</td>`;
+        ['flow','gemini','nb','radar'].forEach(col => {
+          h += `<td>${row[col].split('\n').map(l => esc(l)).join('<br>')}</td>`;
+        });
         h += '</tr>';
       });
-      h += '</tbody></table></div><p class="comparison-note">'+t('comp-note')+'</p>';
+
+      h += `</tbody></table></div><p class="comparison-note">${t('comp-note')}</p>`;
       return h;
     }
 
-    function toggle(id) { document.getElementById(id).classList.toggle('open'); }
+    // ── ACCORDION ────────────────────────────────────────────────────
+    function toggle(id) {
+      document.getElementById(id).classList.toggle('open');
+    }
 
+    // ── NOTES EDIT / SAVE ────────────────────────────────────────────
     function startEdit(sectionId) {
-      editMode[sectionId] = true; renderBody(sectionId);
-      const ta = document.getElementById('notes-ta-'+sectionId); if (ta) ta.focus();
+      editMode[sectionId] = true;
+      renderBody(sectionId);
+      const ta = document.getElementById('notes-ta-' + sectionId);
+      if (ta) ta.focus();
     }
 
     function saveNotes(sectionId) {
-      const ta = document.getElementById('notes-ta-'+sectionId);
+      const ta = document.getElementById('notes-ta-' + sectionId);
       if (ta) notesMem[sectionId] = ta.value;
-      editMode[sectionId] = !notesMem[sectionId];
+      editMode[sectionId] = !!(!notesMem[sectionId]); // stay in edit if empty
       renderBody(sectionId);
     }
 
+    // ── LANGUAGE ─────────────────────────────────────────────────────
     function applyLang(l) {
       currentLang = l;
-      const dict = ui[l]||ui.pt;
-      Object.keys(dict).forEach(id => { const el=document.getElementById(id); if(el) el.textContent=dict[id]; });
-      document.getElementById('btn-pt').classList.toggle('active', l==='pt');
-      document.getElementById('btn-en').classList.toggle('active', l==='en');
+      const dict = ui[l] || ui.pt;
 
-      const pageMap = { 'tab-fases': 'fases', 'tab-roadmap': 'roadmap', 'tab-discovery': 'discovery' };
+      Object.keys(dict).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = dict[id];
+      });
+
+      document.getElementById('btn-pt').classList.toggle('active', l === 'pt');
+      document.getElementById('btn-en').classList.toggle('active', l === 'en');
+
+      const pageMap = { 'tab-roadmap': 'roadmap', 'tab-discovery': 'discovery' };
       Object.keys(pageMap).forEach(id => {
         const a = document.getElementById(id);
         if (a) a.href = (BASE_URL || '') + '?page=' + pageMap[id] + '&lang=' + l;
       });
 
+      // Re-render all bodies (respects current edit mode)
       ['context','data','hypo','opps','platform'].forEach(id => renderBody(id));
-      try { const u=new URL(window.location.href); u.searchParams.set('lang',l); history.replaceState(null,'',u.toString()); } catch(e){}
+
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', l);
+        history.replaceState(null, '', url.toString());
+      } catch(e) {}
     }
 
     function setLang(l) { applyLang(l); }
 
+    // ── INIT ─────────────────────────────────────────────────────────
     ['context','data','hypo','opps','platform'].forEach(id => renderBody(id));
     applyLang(currentLang);
   </script>
