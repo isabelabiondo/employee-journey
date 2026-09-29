@@ -4,7 +4,8 @@
 //  Code.gs — routing + data functions
 // ─────────────────────────────────────────────
 
-const ROADMAP_SHEET_ID = '1V-RyGFinV0vIGOJJo5hCWtfmCIJv1buZ3pRwdtTKoV0';
+// ── After running createRoadmapSheet(), paste the spreadsheet ID here: ──
+const ROADMAP_SHEET_ID = '';
 
 // ── ROUTING ──────────────────────────────────────────────────────────────
 
@@ -62,31 +63,31 @@ function getRoadmapData() {
 
   const ss = SpreadsheetApp.openById(ROADMAP_SHEET_ID);
 
-  // Product launch date from Config
-  var launchDate = null;
+  // ── Product launch date from Config ──
+  let launchDate = null;
   try {
-    var cfg = ss.getSheetByName('Config');
+    const cfg = ss.getSheetByName('Config');
     if (cfg) {
-      var val = cfg.getRange('B2').getValue();
+      const val = cfg.getRange('B2').getValue();
       if (val) launchDate = _fmtDate(val);
     }
-  } catch (e) { /* no config sheet */ }
+  } catch (e) { /* no config sheet — skip */ }
 
-  // Roadmap rows
-  var sheet = ss.getSheetByName('Roadmap');
+  // ── Roadmap rows ──
+  const sheet = ss.getSheetByName('Roadmap');
   if (!sheet) throw new Error('Sheet "Roadmap" not found.');
 
-  var raw  = sheet.getDataRange().getValues();
-  var hdrs = raw[0];
-  var col  = {};
-  hdrs.forEach(function(h, i) { col[String(h).trim()] = i; });
+  const raw  = sheet.getDataRange().getValues();
+  const hdrs = raw[0];
+  const col  = {};
+  hdrs.forEach((h, i) => { col[String(h).trim()] = i; });
 
-  var phases = [];
-  var cur    = null;
+  const phases = [];
+  let cur = null;
 
-  for (var i = 1; i < raw.length; i++) {
-    var r    = raw[i];
-    var type = String(r[col['type']] || '').trim().toUpperCase();
+  for (let i = 1; i < raw.length; i++) {
+    const r    = raw[i];
+    const type = String(r[col['type']] || '').trim().toUpperCase();
     if (!type) continue;
 
     if (type === 'PHASE') {
@@ -99,17 +100,18 @@ function getRoadmapData() {
       phases.push(cur);
 
     } else if ((type === 'TASK' || type === 'MILESTONE') && cur) {
-      var isMilestone = String(r[col['is_milestone']] || '').toUpperCase() === 'TRUE' || r[col['is_milestone']] === true;
+      const isMilestone = String(r[col['is_milestone']] || '').toUpperCase() === 'TRUE' || r[col['is_milestone']] === true;
       cur.tasks.push({
         name:        String(r[col['task_name']] || '').trim(),
         isMilestone: isMilestone,
+        status:      String(r[col['phase_status']] || '').trim(),
         startDate:   r[col['start_date']] ? _fmtDate(r[col['start_date']]) : null,
         endDate:     r[col['end_date']]   ? _fmtDate(r[col['end_date']])   : null
       });
     }
   }
 
-  return { launchDate: launchDate, phases: phases };
+  return { launchDate, phases };
 }
 
 /** Normalises a date value from Sheets to ISO yyyy-mm-dd string */
@@ -118,70 +120,80 @@ function _fmtDate(val) {
   if (val instanceof Date) {
     return Utilities.formatDate(val, Session.getScriptTimeZone(), 'yyyy-MM-dd');
   }
-  var s = String(val).trim();
-  var m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
-  if (m) return m[3] + '-' + m[2].padStart(2,'0') + '-' + m[1].padStart(2,'0');
+  const s = String(val).trim();
+  // dd/mm/yyyy → yyyy-mm-dd
+  const m = s.match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+  if (m) return `${m[3]}-${m[2].padStart(2, '0')}-${m[1].padStart(2, '0')}`;
   return s;
 }
 
 // ── SETUP: create spreadsheet ─────────────────────────────────────────────
 
 /**
- * Run this ONCE from the Apps Script editor (Run > createRoadmapSheet).
+ * Run this ONCE from the Apps Script editor (▶ Run → createRoadmapSheet).
  * It creates the spreadsheet, logs the ID, and returns it.
  * After running, copy the ID into ROADMAP_SHEET_ID above.
  */
 function createRoadmapSheet() {
-  var ss = SpreadsheetApp.create('Employee Journey — Roadmap Data');
+  const ss = SpreadsheetApp.create('Employee Journey — Roadmap Data');
 
-  // Config sheet
-  var cfg = ss.getActiveSheet();
+  // ── Config sheet ──
+  const cfg = ss.getActiveSheet();
   cfg.setName('Config');
-  cfg.getRange('A1:B1').setValues([['key','value']]).setFontWeight('bold').setBackground('#EEF0F3');
+  cfg.getRange('A1:B1').setValues([['key', 'value']]).setFontWeight('bold').setBackground('#EEF0F3');
   cfg.getRange('A2').setValue('product_launch_date');
-  cfg.getRange('B2').setValue('');
+  cfg.getRange('B2').setValue('');  // user fills this in
   cfg.getRange('A3').setValue('// Format: dd/mm/yyyy').setFontColor('#9A9EA6');
   cfg.setColumnWidth(1, 200);
   cfg.setColumnWidth(2, 200);
 
-  // Roadmap sheet
-  var rm   = ss.insertSheet('Roadmap');
-  var hdrs = ['type','phase_id','phase_name','phase_status','task_name','start_date','end_date','is_milestone'];
-  rm.getRange(1,1,1,hdrs.length).setValues([hdrs]).setFontWeight('bold').setBackground('#EEF0F3');
+  // ── Roadmap sheet ──
+  const rm   = ss.insertSheet('Roadmap');
+  const hdrs = ['type', 'phase_id', 'phase_name', 'phase_status', 'task_name', 'start_date', 'end_date', 'is_milestone'];
+  rm.getRange(1, 1, 1, hdrs.length).setValues([hdrs]).setFontWeight('bold').setBackground('#EEF0F3');
 
-  var data = [
-    ['PHASE',    1,'Phase 1 — Foundation', 'IN PROGRESS',  '',                                   '',           '',           'FALSE'],
-    ['TASK',     1,'',                     '',             'Employee journey mapping',            '01/07/2026', '31/07/2026', 'FALSE'],
-    ['TASK',     1,'',                     '',             'Scope alignment with stakeholders',   '10/07/2026', '25/07/2026', 'FALSE'],
-    ['TASK',     1,'',                     '',             'PMO governance charter',              '15/07/2026', '25/07/2026', 'FALSE'],
-    ['MILESTONE',1,'',                     '',             'Official project kickoff',            '31/07/2026', '',           'TRUE'],
-    ['PHASE',    2,'Phase 2 — Expansion',  'PLANNED',      '',                                   '',           '',           'FALSE'],
-    ['TASK',     2,'',                     '',             'Onboarding flows in chatbot',         '01/09/2026', '07/10/2026', 'FALSE'],
-    ['TASK',     2,'',                     '',             'Benefits & FAQ flows',                '15/09/2026', '07/10/2026', 'FALSE'],
-    ['TASK',     2,'',                     '',             'Communication plan — Phase 2',        '01/09/2026', '21/09/2026', 'FALSE'],
-    ['MILESTONE',2,'',                     '',             'Phase 2 launch',                      '07/10/2026', '',           'TRUE'],
-    ['PHASE',    3,'Phase 3 — Depth',      'PLANNED',      '',                                   '',           '',           'FALSE'],
-    ['TASK',     3,'',                     '',             'System integrations (PTO, payroll)',  '18/10/2026', '23/11/2026', 'FALSE'],
-    ['TASK',     3,'',                     '',             'Career & development flows',          '18/10/2026', '23/11/2026', 'FALSE'],
-    ['MILESTONE',3,'',                     '',             'Phase 3 launch',                      '23/11/2026', '',           'TRUE'],
-    ['PHASE',    4,'Phase 4 — Sensitive',  'TO BE DEFINED','',                                   '',           '',           'FALSE'],
-    ['TASK',     4,'',                     '',             'Sensitive flow mapping',              '',           '',           'FALSE'],
-    ['TASK',     4,'',                     '',             'Legal & compliance validation',       '',           '',           'FALSE'],
-    ['MILESTONE',4,'',                     '',             'Phase 4 launch',                      '',           '',           'TRUE'],
+  const data = [
+    // Phase 1
+    ['PHASE',     1, 'Phase 1 — Foundation',  'IN PROGRESS',   '',                                    '',            '',            'FALSE'],
+    ['TASK',      1, '',                       '',              'Employee journey mapping',             '01/07/2026',  '31/07/2026',  'FALSE'],
+    ['TASK',      1, '',                       '',              'Scope alignment with stakeholders',    '10/07/2026',  '25/07/2026',  'FALSE'],
+    ['TASK',      1, '',                       '',              'PMO governance charter',               '15/07/2026',  '25/07/2026',  'FALSE'],
+    ['MILESTONE', 1, '',                       '',              'Official project kickoff',             '31/07/2026',  '',            'TRUE'],
+    // Phase 2
+    ['PHASE',     2, 'Phase 2 — Expansion',   'PLANNED',       '',                                    '',            '',            'FALSE'],
+    ['TASK',      2, '',                       '',              'Onboarding flows in chatbot',          '01/09/2026',  '07/10/2026',  'FALSE'],
+    ['TASK',      2, '',                       '',              'Benefits & FAQ flows',                 '15/09/2026',  '07/10/2026',  'FALSE'],
+    ['TASK',      2, '',                       '',              'Communication plan — Phase 2',         '01/09/2026',  '21/09/2026',  'FALSE'],
+    ['MILESTONE', 2, '',                       '',              'Phase 2 launch',                       '07/10/2026',  '',            'TRUE'],
+    // Phase 3
+    ['PHASE',     3, 'Phase 3 — Depth',       'PLANNED',       '',                                    '',            '',            'FALSE'],
+    ['TASK',      3, '',                       '',              'System integrations (PTO, payroll)',   '18/10/2026',  '23/11/2026',  'FALSE'],
+    ['TASK',      3, '',                       '',              'Career & development flows',           '18/10/2026',  '23/11/2026',  'FALSE'],
+    ['MILESTONE', 3, '',                       '',              'Phase 3 launch',                       '23/11/2026',  '',            'TRUE'],
+    // Phase 4
+    ['PHASE',     4, 'Phase 4 — Sensitive',   'TO BE DEFINED', '',                                    '',            '',            'FALSE'],
+    ['TASK',      4, '',                       '',              'Sensitive flow mapping',               '',            '',            'FALSE'],
+    ['TASK',      4, '',                       '',              'Legal & compliance validation',        '',            '',            'FALSE'],
+    ['MILESTONE', 4, '',                       '',              'Phase 4 launch',                       '',            '',            'TRUE'],
   ];
 
-  rm.getRange(2,1,data.length,hdrs.length).setValues(data);
-  [120,80,220,150,260,120,120,110].forEach(function(w,i){ rm.setColumnWidth(i+1, w); });
+  rm.getRange(2, 1, data.length, hdrs.length).setValues(data);
+
+  // Column widths
+  const widths = [120, 80, 220, 150, 260, 120, 120, 110];
+  widths.forEach((w, i) => rm.setColumnWidth(i + 1, w));
+
+  // Freeze header row
   rm.setFrozenRows(1);
 
-  var id  = ss.getId();
-  var url = ss.getUrl();
+  const id  = ss.getId();
+  const url = ss.getUrl();
 
   Logger.log('');
-  Logger.log('Spreadsheet created!');
+  Logger.log('✅ Spreadsheet created!');
   Logger.log('URL: ' + url);
   Logger.log('');
-  Logger.log('Copy this ID into ROADMAP_SHEET_ID in Code.gs:');
+  Logger.log('→ Copy this ID into ROADMAP_SHEET_ID in Code.gs:');
   Logger.log(id);
 
   return id;
