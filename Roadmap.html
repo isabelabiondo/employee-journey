@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
     :root {
       --ciandt-coral:      #FA5A50;
@@ -54,8 +55,8 @@
     .date-range { font-size: 13px; font-weight: 600; color: var(--ciandt-navy); }
     .date-range-sub { font-size: 11px; color: var(--ciandt-grey-dark); margin-top: 2px; }
     .launch-date-wrap { display: flex; align-items: center; gap: 8px; }
-    .launch-date-label { font-size: 11px; font-weight: 600; color: var(--ciandt-coral); display: flex; align-items: center; gap: 6px; }
-    .launch-date-label::before { content: ''; display: inline-block; width: 14px; height: 2px; background: var(--ciandt-deep-red); border-radius: 1px; }
+    .launch-date-label { font-size: 11px; font-weight: 600; color: var(--ciandt-coral); display: flex; align-items: center; gap: 4px; }
+    .launch-date-label::before { content: ''; display: inline-block; width: 12px; height: 2px; background: var(--ciandt-deep-red); border-radius: 1px; }
     .launch-date-input { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--ciandt-navy); border: 1px solid var(--ciandt-grey-mid); border-radius: 4px; padding: 4px 8px; background: var(--ciandt-grey-light); cursor: pointer; }
     .launch-date-input:focus { outline: none; border-color: var(--ciandt-navy); }
     .controls-right { display: flex; align-items: center; gap: 8px; }
@@ -64,7 +65,7 @@
     .nav-btn.today-btn { background: var(--ciandt-grey-light); }
     .refresh-btn { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; color: var(--ciandt-white); background: var(--ciandt-navy); border: none; border-radius: 999px; padding: 6px 16px; cursor: pointer; transition: opacity 0.2s; display: flex; align-items: center; gap: 6px; }
     .refresh-btn:hover { opacity: 0.85; }
-    .refresh-icon { display: inline-block; }
+    .refresh-icon { display: inline-block; transition: transform 0.4s; }
     .refresh-btn.loading .refresh-icon { animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
@@ -92,9 +93,9 @@
     .gantt-bar-area { position: relative; flex: 1; }
     .task-bar { position: absolute; top: 50%; transform: translateY(-50%); height: 20px; border-radius: 3px; display: flex; align-items: center; padding: 0 6px; font-size: 10px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 4px; }
     .milestone-diamond { position: absolute; top: 50%; transform: translateY(-50%) rotate(45deg); width: 12px; height: 12px; background: var(--ciandt-coral); border-radius: 2px; }
-    .phase-bg-bar { position: absolute; top: 8px; bottom: 8px; border-radius: 3px; opacity: 0.15; }
+    .phase-bg-bar { position: absolute; top: 8px; bottom: 8px; border-radius: 3px; opacity: 0.12; }
     .today-line { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ciandt-coral); opacity: 0.7; pointer-events: none; z-index: 5; }
-    .launch-line { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ciandt-deep-red); opacity: 0.55; pointer-events: none; z-index: 5; }
+    .launch-line { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ciandt-deep-red); opacity: 0.5; pointer-events: none; z-index: 5; }
     .gantt-state { padding: 48px; text-align: center; color: var(--ciandt-grey-dark); font-size: 14px; }
     .gantt-state .spinner { width: 28px; height: 28px; border: 2px solid var(--ciandt-grey-mid); border-top-color: var(--ciandt-navy); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 16px; }
     .gantt-legend { padding: 10px 24px; border-top: 1px solid var(--ciandt-grey-light); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
@@ -129,15 +130,15 @@
   </header>
 
   <nav class="tab-nav">
-    <a class="tab-item" href="?page=fases&lang=pt" id="tab-fases">
+    <a class="tab-item" href="#" id="tab-fases">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/><rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/><rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/></svg>
       <span id="txt-tab-fases">Phases</span>
     </a>
-    <a class="tab-item active" href="?page=roadmap&lang=pt" id="tab-roadmap">
+    <a class="tab-item active" href="#" id="tab-roadmap">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><path d="M2 13 L5 5 L9 9 L13 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="3" r="1.5" fill="currentColor"/></svg>
       <span id="txt-tab-roadmap">Roadmap</span>
     </a>
-    <a class="tab-item" href="?page=discovery&lang=pt" id="tab-discovery">
+    <a class="tab-item" href="#" id="tab-discovery">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 10 L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       <span id="txt-tab-discovery">Discovery</span>
     </a>
@@ -198,7 +199,7 @@
   </div>
 
   <script>
-    var ui = {
+    const ui = {
       pt: {
         'txt-project':'Radar Chatbot · Employee Journey','txt-badge':'Uso interno',
         'txt-tab-fases':'Fases','txt-tab-roadmap':'Roadmap','txt-tab-discovery':'Discovery',
@@ -223,6 +224,7 @@
         'txt-launch-label':'Product launch date','txt-refresh':'Refresh',
         'btn-prev':'← 3 months','btn-today':'Today','btn-next':'3 months →',
         'col-header':'PHASE / TASK',
+        'leg-phase1':'Phase 1','leg-phase2':'Phase 2','leg-phase3':'Phase 3','leg-phase4':'Phase 4+',
         'leg-milestone':'Milestone','leg-today':'Today','leg-launch':'Launch date',
         'loading':'Loading data from spreadsheet...',
         'error-noid':'Spreadsheet not configured. Run createRoadmapSheet() in the Apps Script editor and paste the ID into Code.gs.',
@@ -231,13 +233,13 @@
       }
     };
 
-    var PX_PER_DAY  = 5;
-    var VIEW_MONTHS = 6;
-    var DAY_MS      = 86400000;
-    var ROW_H_PHASE = 44;
-    var ROW_H_TASK  = 36;
+    const PX_PER_DAY  = 5;
+    const VIEW_MONTHS = 6;
+    const DAY_MS      = 86400000;
+    const ROW_H_PHASE = 44;
+    const ROW_H_TASK  = 36;
 
-    var PHASE_COLORS = {
+    const PHASE_COLORS = {
       1: { bar: '#FA5A50', text: '#FFFFFF' },
       2: { bar: '#000050', text: '#FFFFFF' },
       3: { bar: '#B4DCFA', text: '#000050' }
@@ -256,21 +258,23 @@
       return t('status-tbd');
     }
 
-    var currentLang = '<?= lang ?>' || 'pt';
-    var viewStart   = _monthStart(new Date());
-    var roadmapData = null;
-    var launchDate  = null;
+    // ── STATE ──
+    const BASE_URL = '<?= serviceUrl ?>';
+    let currentLang  = '<?= lang ?>' || 'pt';
+    let viewStart    = _monthStart(new Date());
+    let roadmapData  = null;
+    let launchDate   = null;
 
     function t(k) { return (ui[currentLang]&&ui[currentLang][k])||(ui.en&&ui.en[k])||k; }
     function _monthStart(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
-    function _addMonths(d, n) { var r=new Date(d); r.setMonth(r.getMonth()+n); return r; }
+    function _addMonths(d, n) { const r=new Date(d); r.setMonth(r.getMonth()+n); return r; }
     function _daysBetween(a, b) { return Math.round((b-a)/DAY_MS); }
-    function _isoToDate(iso) { if(!iso) return null; var p=iso.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]); }
-    function _fmtMonthYear(d) { return d.toLocaleDateString(currentLang==='pt'?'pt-BR':'en-US', {month:'short',year:'2-digit'}); }
-    function _daysInMonth(y, m) { return new Date(y, m+1, 0).getDate(); }
+    function _isoToDate(iso) { if(!iso) return null; const [y,m,d]=iso.split('-').map(Number); return new Date(y,m-1,d); }
+    function _fmtMonthYear(d) { return d.toLocaleDateString(currentLang==='pt'?'pt-BR':'en-US',{month:'short',year:'2-digit'}); }
+    function _daysInMonth(y,m) { return new Date(y,m+1,0).getDate(); }
 
     function loadData() {
-      var btn = document.getElementById('refresh-btn');
+      const btn = document.getElementById('refresh-btn');
       if (btn) btn.classList.add('loading');
       showState('<div class="spinner"></div>' + t('loading'));
       if (typeof google !== 'undefined' && google.script) {
@@ -278,7 +282,7 @@
           .withSuccessHandler(function(data) { if(btn) btn.classList.remove('loading'); onDataLoaded(data); })
           .withFailureHandler(function(err) {
             if(btn) btn.classList.remove('loading');
-            var msg = String(err&&err.message||err);
+            const msg = String(err&&err.message||err);
             showState('⚠ ' + (msg.indexOf('ROADMAP_SHEET_ID')!==-1 ? t('error-noid') : t('error-generic')+' '+msg));
           })
           .getRoadmapData();
@@ -292,13 +296,13 @@
       roadmapData = data;
       if (data.launchDate) {
         launchDate = data.launchDate;
-        var inp = document.getElementById('launch-date-input');
+        const inp = document.getElementById('launch-date-input');
         if (inp) inp.value = launchDate;
       }
-      var allDates = [];
-      data.phases.forEach(function(p) { p.tasks.forEach(function(task) { if(task.startDate) allDates.push(_isoToDate(task.startDate).getTime()); }); });
+      const allDates = [];
+      data.phases.forEach(p => p.tasks.forEach(task => { if(task.startDate) allDates.push(_isoToDate(task.startDate).getTime()); }));
       if (allDates.length) {
-        var minDate = new Date(Math.min.apply(null, allDates));
+        const minDate = new Date(Math.min(...allDates));
         viewStart = _monthStart(minDate);
         viewStart.setMonth(viewStart.getMonth()-1);
       }
@@ -307,103 +311,97 @@
 
     function showState(html) {
       document.getElementById('gantt-head').innerHTML = '';
-      document.getElementById('gantt-body').innerHTML = '<div class="gantt-state">'+html+'</div>';
+      document.getElementById('gantt-body').innerHTML = `<div class="gantt-state">${html}</div>`;
       document.getElementById('gantt-legend').style.display = 'none';
     }
 
     function buildGantt() {
       if (!roadmapData) return;
-      var viewEnd   = _addMonths(viewStart, VIEW_MONTHS);
-      var totalDays = _daysBetween(viewStart, viewEnd);
-      var timelineW = totalDays * PX_PER_DAY;
-      var today     = new Date();
-      var todayX    = _daysBetween(viewStart, today) * PX_PER_DAY;
-      var launchX   = launchDate ? _daysBetween(viewStart, _isoToDate(launchDate)) * PX_PER_DAY : null;
+      const viewEnd   = _addMonths(viewStart, VIEW_MONTHS);
+      const totalDays = _daysBetween(viewStart, viewEnd);
+      const timelineW = totalDays * PX_PER_DAY;
+      const today     = new Date();
+      const todayX    = _daysBetween(viewStart, today) * PX_PER_DAY;
+      const launchX   = launchDate ? _daysBetween(viewStart, _isoToDate(launchDate)) * PX_PER_DAY : null;
 
-      // Date range label
-      var fmt = function(d) { return d.toLocaleDateString(currentLang==='pt'?'pt-BR':'en-US',{month:'short',year:'numeric'}); };
+      const fmt = d => d.toLocaleDateString(currentLang==='pt'?'pt-BR':'en-US',{month:'short',year:'numeric'});
       document.getElementById('txt-date-range').textContent = fmt(viewStart) + ' → ' + fmt(_addMonths(viewEnd,-1));
 
-      // Header
-      var hh = '<div class="gantt-head-label">'+t('col-header')+'</div><div class="gantt-head-timeline" style="width:'+timelineW+'px">';
+      let hh = `<div class="gantt-head-label">${t('col-header')}</div><div class="gantt-head-timeline" style="width:${timelineW}px">`;
       hh += '<div class="gantt-months">';
-      var dd = new Date(viewStart);
+      let dd = new Date(viewStart);
       while (dd < viewEnd) {
-        var eom = new Date(dd.getFullYear(), dd.getMonth()+1, 0);
-        var es  = dd < viewStart ? viewStart : dd;
-        var ee  = eom > viewEnd ? viewEnd : eom;
-        var days = _daysBetween(es,ee)+1;
-        hh += '<div class="gantt-month" style="width:'+(days*PX_PER_DAY)+'px">'+_fmtMonthYear(dd)+'</div>';
+        const eom = new Date(dd.getFullYear(), dd.getMonth()+1, 0);
+        const es  = dd < viewStart ? viewStart : dd;
+        const ee  = eom > viewEnd ? viewEnd : eom;
+        const days = _daysBetween(es,ee)+1;
+        hh += `<div class="gantt-month" style="width:${days*PX_PER_DAY}px">${_fmtMonthYear(dd)}</div>`;
         dd = new Date(dd.getFullYear(), dd.getMonth()+1, 1);
       }
       hh += '</div><div class="gantt-days">';
-      for (var i=0; i<totalDays; i++) {
-        var di = new Date(viewStart.getTime() + i*DAY_MS);
-        var dn = di.getDate();
-        var show = dn===1||dn===8||dn===15||dn===22;
-        var bc = dn===1 ? 'var(--ciandt-grey-mid)' : 'var(--ciandt-grey-light)';
-        hh += '<div class="gantt-day-mark" style="width:'+PX_PER_DAY+'px;border-right-color:'+bc+'">'+(show?dn:'')+'</div>';
+      for (let i=0; i<totalDays; i++) {
+        const di = new Date(viewStart.getTime() + i*DAY_MS);
+        const dn = di.getDate();
+        const show = dn===1||dn===8||dn===15||dn===22;
+        const bc = dn===1 ? 'var(--ciandt-grey-mid)' : 'var(--ciandt-grey-light)';
+        hh += `<div class="gantt-day-mark" style="width:${PX_PER_DAY}px;border-right-color:${bc}">${show?dn:''}</div>`;
       }
       hh += '</div></div>';
       document.getElementById('gantt-head').innerHTML = hh;
 
-      // Body
-      var bh = '';
-      roadmapData.phases.forEach(function(phase) {
-        var clr = phaseColor(phase.id);
-        bh += '<div class="gantt-row gantt-phase-row" style="height:'+ROW_H_PHASE+'px">';
-        bh += '<div class="gantt-row-label"><span class="label-text">'+phase.name+'</span>';
-        bh += '<span class="gantt-phase-badge" style="'+statusStyle(phase.status)+'">'+statusLabel(phase.status)+'</span></div>';
-        bh += '<div class="gantt-bar-area" style="width:'+timelineW+'px;height:'+ROW_H_PHASE+'px;background:var(--ciandt-navy)">';
+      let bh = '';
+      roadmapData.phases.forEach(phase => {
+        const clr = phaseColor(phase.id);
+        bh += `<div class="gantt-row gantt-phase-row" style="height:${ROW_H_PHASE}px">`;
+        bh += `<div class="gantt-row-label"><span class="label-text">${phase.name}</span>`;
+        bh += `<span class="gantt-phase-badge" style="${statusStyle(phase.status)}">${statusLabel(phase.status)}</span></div>`;
+        bh += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_PHASE}px;background:var(--ciandt-navy)">`;
 
-        // Phase bg bar
-        var pss = []; var pee = [];
-        phase.tasks.forEach(function(task) {
+        const pss = []; const pee = [];
+        phase.tasks.forEach(task => {
           if(task.startDate) pss.push(_isoToDate(task.startDate).getTime());
           if(task.endDate||task.startDate) pee.push(_isoToDate(task.endDate||task.startDate).getTime());
         });
         if (pss.length) {
-          var ps = Math.max(0, _daysBetween(viewStart, new Date(Math.min.apply(null,pss)))*PX_PER_DAY);
-          var pe = Math.min(timelineW, _daysBetween(viewStart, new Date(Math.max.apply(null,pee)))*PX_PER_DAY+PX_PER_DAY);
-          if (pe>ps) bh += '<div class="phase-bg-bar" style="left:'+ps+'px;width:'+(pe-ps)+'px;background:'+clr.bar+'"></div>';
+          const ps = Math.max(0, _daysBetween(viewStart, new Date(Math.min(...pss)))*PX_PER_DAY);
+          const pe = Math.min(timelineW, _daysBetween(viewStart, new Date(Math.max(...pee)))*PX_PER_DAY+PX_PER_DAY);
+          if (pe>ps) bh += `<div class="phase-bg-bar" style="left:${ps}px;width:${pe-ps}px;background:${clr.bar}"></div>`;
         }
-        if (todayX>=0&&todayX<=timelineW) bh += '<div class="today-line" style="left:'+todayX+'px"></div>';
-        if (launchX!==null&&launchX>=0&&launchX<=timelineW) bh += '<div class="launch-line" style="left:'+launchX+'px"></div>';
+        if (todayX>=0&&todayX<=timelineW) bh += `<div class="today-line" style="left:${todayX}px"></div>`;
+        if (launchX!==null&&launchX>=0&&launchX<=timelineW) bh += `<div class="launch-line" style="left:${launchX}px"></div>`;
         bh += '</div></div>';
 
-        phase.tasks.forEach(function(task) {
-          bh += '<div class="gantt-row gantt-task-row" style="height:'+ROW_H_TASK+'px">';
-          var indent = task.isMilestone ? '<span class="milestone-dot"></span>' : '<span style="width:12px;flex-shrink:0;display:inline-block"></span>';
-          bh += '<div class="gantt-row-label">'+indent+'<span class="label-text">'+task.name+'</span></div>';
-          bh += '<div class="gantt-bar-area" style="width:'+timelineW+'px;height:'+ROW_H_TASK+'px">';
+        phase.tasks.forEach(task => {
+          bh += `<div class="gantt-row gantt-task-row" style="height:${ROW_H_TASK}px">`;
+          const indent = task.isMilestone ? '<span class="milestone-dot"></span>' : '<span style="width:12px;flex-shrink:0;display:inline-block"></span>';
+          bh += `<div class="gantt-row-label">${indent}<span class="label-text">${task.name}</span></div>`;
+          bh += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_TASK}px">`;
           if (task.startDate) {
-            var sx = _daysBetween(viewStart, _isoToDate(task.startDate)) * PX_PER_DAY;
+            const sx = _daysBetween(viewStart, _isoToDate(task.startDate)) * PX_PER_DAY;
             if (task.isMilestone) {
-              if (sx>=-8&&sx<=timelineW+8) bh += '<div class="milestone-diamond" style="left:'+(sx-6)+'px"></div>';
+              if (sx>=-8&&sx<=timelineW+8) bh += `<div class="milestone-diamond" style="left:${sx-6}px"></div>`;
             } else {
-              var ex = task.endDate ? _daysBetween(viewStart,_isoToDate(task.endDate))*PX_PER_DAY+PX_PER_DAY : sx+PX_PER_DAY*7;
-              var left = Math.max(0,sx); var right = Math.min(timelineW,ex); var w = right-left;
+              const ex = task.endDate ? _daysBetween(viewStart,_isoToDate(task.endDate))*PX_PER_DAY+PX_PER_DAY : sx+PX_PER_DAY*7;
+              const left = Math.max(0,sx); const right = Math.min(timelineW,ex); const w = right-left;
               if (w>0) {
-                bh += '<div class="task-bar" style="left:'+left+'px;width:'+w+'px;background:'+clr.bar+';color:'+clr.text+'">';
-                if (w>40) bh += '<span>'+task.name+'</span>';
+                bh += `<div class="task-bar" style="left:${left}px;width:${w}px;background:${clr.bar};color:${clr.text}">`;
+                if (w>40) bh += `<span>${task.name}</span>`;
                 bh += '</div>';
               }
             }
           }
-          if (todayX>=0&&todayX<=timelineW) bh += '<div class="today-line" style="left:'+todayX+'px"></div>';
-          if (launchX!==null&&launchX>=0&&launchX<=timelineW) bh += '<div class="launch-line" style="left:'+launchX+'px"></div>';
+          if (todayX>=0&&todayX<=timelineW) bh += `<div class="today-line" style="left:${todayX}px"></div>`;
+          if (launchX!==null&&launchX>=0&&launchX<=timelineW) bh += `<div class="launch-line" style="left:${launchX}px"></div>`;
           bh += '</div></div>';
         });
       });
 
       document.getElementById('gantt-body').innerHTML = bh;
       document.getElementById('gantt-legend').style.display = 'flex';
-      ['leg-milestone','leg-today','leg-launch'].forEach(function(id) {
-        var el = document.getElementById(id); if(el) el.textContent = t(id);
-      });
+      ['leg-milestone','leg-today','leg-launch'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=t(id); });
 
-      var scroll = document.getElementById('gantt-scroll');
-      if (scroll && todayX>0) setTimeout(function(){ scroll.scrollLeft = Math.max(0,todayX-150); }, 50);
+      const scroll = document.getElementById('gantt-scroll');
+      if (scroll && todayX>0) setTimeout(() => { scroll.scrollLeft = Math.max(0,todayX-150); }, 50);
     }
 
     function navigate(months) { viewStart = _addMonths(viewStart,months); buildGantt(); }
@@ -412,19 +410,24 @@
 
     function applyLang(l) {
       currentLang = l;
-      var dict = ui[l]||ui.pt;
-      Object.keys(dict).forEach(function(id) { var el=document.getElementById(id); if(el) el.textContent=dict[id]; });
+      const dict = ui[l]||ui.pt;
+      Object.keys(dict).forEach(id => { const el=document.getElementById(id); if(el) el.textContent=dict[id]; });
       document.getElementById('btn-pt').classList.toggle('active', l==='pt');
       document.getElementById('btn-en').classList.toggle('active', l==='en');
-      ['tab-fases','tab-roadmap','tab-discovery'].forEach(function(id) {
-        var a=document.getElementById(id); if(a) a.href=a.href.replace(/lang=\w+/,'lang='+l);
+
+      const pageMap = { 'tab-fases': 'fases', 'tab-roadmap': 'roadmap', 'tab-discovery': 'discovery' };
+      Object.keys(pageMap).forEach(id => {
+        const a = document.getElementById(id);
+        if (a) a.href = (BASE_URL || '') + '?page=' + pageMap[id] + '&lang=' + l;
       });
+
       if (roadmapData) buildGantt();
-      try { var u=new URL(window.location.href); u.searchParams.set('lang',l); history.replaceState(null,'',u.toString()); } catch(e){}
+      try { const u=new URL(window.location.href); u.searchParams.set('lang',l); history.replaceState(null,'',u.toString()); } catch(e){}
     }
+
     function setLang(l) { applyLang(l); }
 
-    var SAMPLE_DATA = {
+    const SAMPLE_DATA = {
       launchDate: '2026-11-30',
       phases: [
         { id:1, name:'Phase 1 — Foundation', status:'IN PROGRESS', tasks:[
