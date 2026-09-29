@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
+    /* ── DESIGN TOKENS ── */
     :root {
       --ciandt-coral:      #FA5A50;
       --ciandt-deep-red:   #690037;
@@ -24,6 +25,7 @@
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     body { font-family: 'DM Sans', sans-serif; background: var(--ciandt-grey-light); color: var(--ciandt-navy); min-height: 100vh; }
 
+    /* ── BRAND BAR ── */
     .brand-bar { background: var(--ciandt-navy); padding: 10px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .brand-bar-left { display: flex; align-items: center; gap: 12px; }
     .brand-name { font-size: 13px; font-weight: 700; color: var(--ciandt-white); letter-spacing: 0.03em; white-space: nowrap; }
@@ -32,6 +34,7 @@
     .brand-project { font-size: 12px; font-weight: 500; color: var(--ciandt-white); white-space: nowrap; }
     .internal-badge { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.25); padding: 3px 10px; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase; }
 
+    /* ── TAB NAV ── */
     .tab-nav { background: var(--ciandt-white); padding: 0 32px; display: flex; align-items: center; border-bottom: 1px solid var(--ciandt-grey-mid); overflow-x: auto; scrollbar-width: none; }
     .tab-nav::-webkit-scrollbar { display: none; }
     .tab-item { display: flex; align-items: center; gap: 7px; padding: 14px 18px; font-size: 13px; font-weight: 500; color: var(--ciandt-grey-dark); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s; flex-shrink: 0; }
@@ -42,6 +45,7 @@
     .lang-btn { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 999px; border: none; cursor: pointer; background: transparent; color: var(--ciandt-grey-dark); letter-spacing: 0.06em; transition: all 0.2s; }
     .lang-btn.active { background: var(--ciandt-navy); color: var(--ciandt-white); }
 
+    /* ── HERO ── */
     .hero { background: var(--ciandt-navy); margin: 24px 32px 0; border-radius: 8px 8px 0 0; border-bottom: 3px solid var(--ciandt-coral); padding: 28px 40px; position: relative; overflow: hidden; }
     .hero-shapes { position: absolute; inset: 0; pointer-events: none; }
     .hero-label { font-size: 11px; font-weight: 600; color: var(--ciandt-coral); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 8px; position: relative; z-index: 1; }
@@ -50,7 +54,19 @@
     .hero-title .highlight { color: var(--ciandt-coral); }
     .hero-subtitle { font-size: 13px; color: rgba(255,255,255,0.6); position: relative; z-index: 1; }
 
-    .controls-bar { background: var(--ciandt-white); margin: 0 32px; border-left: 1px solid var(--ciandt-grey-mid); border-right: 1px solid var(--ciandt-grey-mid); padding: 12px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    /* ── CONTROLS BAR ── */
+    .controls-bar {
+      background: var(--ciandt-white);
+      margin: 0 32px;
+      border-left: 1px solid var(--ciandt-grey-mid);
+      border-right: 1px solid var(--ciandt-grey-mid);
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
     .controls-left { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
     .date-range { font-size: 13px; font-weight: 600; color: var(--ciandt-navy); }
     .date-range-sub { font-size: 11px; color: var(--ciandt-grey-dark); margin-top: 2px; }
@@ -59,6 +75,7 @@
     .launch-date-label::before { content: ''; display: inline-block; width: 12px; height: 2px; background: var(--ciandt-deep-red); border-radius: 1px; }
     .launch-date-input { font-family: 'DM Sans', sans-serif; font-size: 12px; color: var(--ciandt-navy); border: 1px solid var(--ciandt-grey-mid); border-radius: 4px; padding: 4px 8px; background: var(--ciandt-grey-light); cursor: pointer; }
     .launch-date-input:focus { outline: none; border-color: var(--ciandt-navy); }
+
     .controls-right { display: flex; align-items: center; gap: 8px; }
     .nav-btn { font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 500; color: var(--ciandt-navy); background: transparent; border: 1px solid var(--ciandt-grey-mid); border-radius: 999px; padding: 5px 14px; cursor: pointer; transition: all 0.15s; white-space: nowrap; }
     .nav-btn:hover { border-color: var(--ciandt-navy); }
@@ -69,8 +86,12 @@
     .refresh-btn.loading .refresh-icon { animation: spin 0.8s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
 
+    /* ── GANTT ── */
     .gantt-wrapper { margin: 0 32px 32px; background: var(--ciandt-white); border: 1px solid var(--ciandt-grey-mid); border-top: none; border-radius: 0 0 8px 8px; overflow: hidden; }
+
     .gantt-scroll { overflow-x: auto; overflow-y: auto; max-height: calc(100vh - 320px); min-height: 200px; }
+
+    /* Header: sticky top */
     .gantt-head { position: sticky; top: 0; z-index: 20; display: flex; background: var(--ciandt-white); border-bottom: 1px solid var(--ciandt-grey-mid); }
     .gantt-head-label { width: 200px; flex-shrink: 0; font-size: 10px; font-weight: 700; color: var(--ciandt-grey-dark); letter-spacing: 0.1em; text-transform: uppercase; padding: 0 16px; display: flex; align-items: center; border-right: 1px solid var(--ciandt-grey-mid); background: var(--ciandt-white); position: sticky; left: 0; z-index: 25; }
     .gantt-head-timeline { flex: 1; }
@@ -78,26 +99,48 @@
     .gantt-month { text-align: center; font-size: 11px; font-weight: 600; color: var(--ciandt-navy); padding: 6px 0; border-right: 1px solid var(--ciandt-grey-light); flex-shrink: 0; overflow: hidden; }
     .gantt-days { display: flex; }
     .gantt-day-mark { font-size: 9px; color: var(--ciandt-grey-dark); text-align: center; border-right: 1px solid var(--ciandt-grey-light); flex-shrink: 0; padding: 3px 0; overflow: hidden; }
+
+    /* Body rows */
     .gantt-row { display: flex; position: relative; }
     .gantt-row:hover .gantt-row-label { background: var(--ciandt-grey-light); }
+
+    /* Phase header row */
     .gantt-phase-row { background: var(--ciandt-navy); }
     .gantt-phase-row .gantt-row-label { background: var(--ciandt-navy); color: var(--ciandt-white); font-size: 12px; font-weight: 600; }
     .gantt-phase-row:hover .gantt-row-label { background: var(--ciandt-navy); }
     .gantt-phase-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 999px; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 8px; flex-shrink: 0; }
+
+    /* Task row */
     .gantt-task-row { border-bottom: 1px solid var(--ciandt-grey-light); }
     .gantt-task-row:last-child { border-bottom: none; }
-    .gantt-row-label { width: 200px; flex-shrink: 0; padding: 0 16px; display: flex; align-items: center; border-right: 1px solid var(--ciandt-grey-mid); font-size: 12px; color: var(--ciandt-navy); position: sticky; left: 0; z-index: 10; transition: background 0.15s; overflow: hidden; background: var(--ciandt-white); }
-    .gantt-phase-row .gantt-row-label { background: var(--ciandt-navy); }
-    .label-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+    /* Label cell */
+    .gantt-row-label { width: 200px; flex-shrink: 0; padding: 0 16px; display: flex; align-items: center; border-right: 1px solid var(--ciandt-grey-mid); font-size: 12px; color: var(--ciandt-navy); position: sticky; left: 0; z-index: 10; transition: background 0.15s; overflow: hidden; }
+    .gantt-row-label .label-text { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
     .milestone-dot { width: 7px; height: 7px; background: var(--ciandt-coral); border-radius: 50%; margin-right: 8px; flex-shrink: 0; }
+
+    /* Bar area */
     .gantt-bar-area { position: relative; flex: 1; }
+
+    /* Task bar */
     .task-bar { position: absolute; top: 50%; transform: translateY(-50%); height: 20px; border-radius: 3px; display: flex; align-items: center; padding: 0 6px; font-size: 10px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 4px; }
+
+    /* Milestone diamond */
     .milestone-diamond { position: absolute; top: 50%; transform: translateY(-50%) rotate(45deg); width: 12px; height: 12px; background: var(--ciandt-coral); border-radius: 2px; }
+
+    /* Phase background bar */
     .phase-bg-bar { position: absolute; top: 8px; bottom: 8px; border-radius: 3px; opacity: 0.12; }
+
+    /* Today & launch lines */
     .today-line { position: absolute; top: 0; bottom: 0; width: 1px; background: var(--ciandt-coral); opacity: 0.7; pointer-events: none; z-index: 5; }
     .launch-line { position: absolute; top: 0; bottom: 0; width: 2px; background: var(--ciandt-deep-red); opacity: 0.5; pointer-events: none; z-index: 5; }
+    .today-label { position: absolute; top: 0; font-size: 9px; font-weight: 700; color: var(--ciandt-coral); transform: translateX(-50%); white-space: nowrap; pointer-events: none; padding: 2px 4px; background: var(--ciandt-white); border-radius: 2px; z-index: 6; }
+
+    /* Loading / error state */
     .gantt-state { padding: 48px; text-align: center; color: var(--ciandt-grey-dark); font-size: 14px; }
     .gantt-state .spinner { width: 28px; height: 28px; border: 2px solid var(--ciandt-grey-mid); border-top-color: var(--ciandt-navy); border-radius: 50%; animation: spin 0.7s linear infinite; margin: 0 auto 16px; }
+
+    /* Legend */
     .gantt-legend { padding: 10px 24px; border-top: 1px solid var(--ciandt-grey-light); display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
     .legend-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--ciandt-grey-dark); }
     .legend-bar { width: 24px; height: 8px; border-radius: 2px; }
@@ -118,6 +161,7 @@
 </head>
 <body>
 
+  <!-- BRAND BAR -->
   <header class="brand-bar">
     <div class="brand-bar-left">
       <span class="brand-name">CI&amp;T</span>
@@ -129,16 +173,17 @@
     <span class="internal-badge" id="txt-badge">Internal use only</span>
   </header>
 
+  <!-- TAB NAVIGATION -->
   <nav class="tab-nav">
-    <a class="tab-item" href="#" id="tab-fases">
+    <a class="tab-item" href="?page=fases&lang=pt" id="tab-fases">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/><rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/><rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/></svg>
       <span id="txt-tab-fases">Phases</span>
     </a>
-    <a class="tab-item active" href="#" id="tab-roadmap">
+    <a class="tab-item active" href="?page=roadmap&lang=pt" id="tab-roadmap">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><path d="M2 13 L5 5 L9 9 L13 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="3" r="1.5" fill="currentColor"/></svg>
       <span id="txt-tab-roadmap">Roadmap</span>
     </a>
-    <a class="tab-item" href="#" id="tab-discovery">
+    <a class="tab-item" href="?page=discovery&lang=pt" id="tab-discovery">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 10 L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
       <span id="txt-tab-discovery">Discovery</span>
     </a>
@@ -149,6 +194,7 @@
     </div>
   </nav>
 
+  <!-- HERO -->
   <section class="hero">
     <div class="hero-shapes" aria-hidden="true">
       <svg style="position:absolute;right:-60px;top:-40px;width:220px;height:220px;"><circle cx="110" cy="110" r="110" fill="var(--ciandt-coral)" opacity="0.07"/></svg>
@@ -160,6 +206,7 @@
     <p class="hero-subtitle" id="txt-hero-sub">Phases and tasks on a shared timeline. Update the spreadsheet, then refresh here.</p>
   </section>
 
+  <!-- CONTROLS BAR -->
   <div class="controls-bar">
     <div class="controls-left">
       <div>
@@ -168,13 +215,13 @@
       </div>
       <div class="launch-date-wrap">
         <span class="launch-date-label" id="txt-launch-label">Product launch date</span>
-        <input type="date" class="launch-date-input" id="launch-date-input" onchange="onLaunchDateChange(this.value)">
+        <input type="date" class="launch-date-input" id="launch-date-input" title="Set the final product launch date — it appears as a fixed line on the timeline" onchange="onLaunchDateChange(this.value)">
       </div>
     </div>
     <div class="controls-right">
-      <button class="nav-btn" id="btn-prev" onclick="navigate(-3)">← 3 months</button>
-      <button class="nav-btn today-btn" id="btn-today" onclick="goToToday()">Today</button>
-      <button class="nav-btn" id="btn-next" onclick="navigate(3)">3 months →</button>
+      <button class="nav-btn" onclick="navigate(-3)" id="btn-prev">← 3 months</button>
+      <button class="nav-btn today-btn" onclick="goToToday()" id="btn-today">Today</button>
+      <button class="nav-btn" onclick="navigate(3)" id="btn-next">3 months →</button>
       <button class="refresh-btn" id="refresh-btn" onclick="loadData()">
         <span class="refresh-icon">↻</span>
         <span id="txt-refresh">Refresh</span>
@@ -182,6 +229,7 @@
     </div>
   </div>
 
+  <!-- GANTT -->
   <div class="gantt-wrapper">
     <div class="gantt-scroll" id="gantt-scroll">
       <div id="gantt-head" class="gantt-head"></div>
@@ -191,7 +239,7 @@
       <div class="legend-item"><div class="legend-bar" style="background:var(--ciandt-coral)"></div><span id="leg-phase1">Phase 1</span></div>
       <div class="legend-item"><div class="legend-bar" style="background:var(--ciandt-navy)"></div><span id="leg-phase2">Phase 2</span></div>
       <div class="legend-item"><div class="legend-bar" style="background:var(--ciandt-light-blue)"></div><span id="leg-phase3">Phase 3</span></div>
-      <div class="legend-item"><div class="legend-bar" style="background:var(--ciandt-grey-mid)"></div><span id="leg-phase4">Phase 4+</span></div>
+      <div class="legend-item"><div class="legend-bar" style="background:var(--ciandt-grey-mid)"></div><span id="leg-phase4">Phase 4</span></div>
       <div class="legend-item"><div class="legend-diamond"></div><span id="leg-milestone">Milestone</span></div>
       <div class="legend-item"><div class="legend-today"></div><span id="leg-today">Today</span></div>
       <div class="legend-item"><div class="legend-launch"></div><span id="leg-launch">Launch date</span></div>
@@ -199,94 +247,169 @@
   </div>
 
   <script>
+    // ── UI STRINGS ──
     const ui = {
       pt: {
-        'txt-project':'Radar Chatbot · Employee Journey','txt-badge':'Uso interno',
-        'txt-tab-fases':'Fases','txt-tab-roadmap':'Roadmap','txt-tab-discovery':'Discovery',
-        'txt-hero-label':'VISÃO GERAL · LINHA DO TEMPO','txt-hero-highlight':'Roadmap',
-        'txt-hero-sub':'Fases e tarefas numa linha do tempo compartilhada. Atualize a planilha e clique em Atualizar.',
-        'txt-date-sub':'Clique em uma tarefa para ver detalhes',
-        'txt-launch-label':'Data de lançamento','txt-refresh':'Atualizar',
-        'btn-prev':'← 3 meses','btn-today':'Hoje','btn-next':'3 meses →',
-        'col-header':'FASE / TAREFA',
-        'leg-milestone':'Marco','leg-today':'Hoje','leg-launch':'Data de lançamento',
-        'loading':'Carregando dados da planilha...',
-        'error-noid':'Planilha não configurada. Execute createRoadmapSheet() no editor do Apps Script e cole o ID em Code.gs.',
-        'error-generic':'Erro ao carregar dados.',
-        'status-in-progress':'EM ANDAMENTO','status-planned':'PLANEJADO','status-tbd':'A DEFINIR'
+        'txt-project':     'Radar Chatbot · Employee Journey',
+        'txt-badge':       'Uso interno',
+        'txt-tab-fases':   'Fases',
+        'txt-tab-roadmap': 'Roadmap',
+        'txt-tab-discovery':'Discovery',
+        'txt-hero-label':  'VISÃO GERAL · LINHA DO TEMPO',
+        'txt-hero-highlight':'Roadmap',
+        'txt-hero-sub':    'Fases e tarefas numa linha do tempo compartilhada. Atualize a planilha e clique em Atualizar.',
+        'txt-date-sub':    'Clique em uma tarefa para ver detalhes',
+        'txt-launch-label':'Data de lançamento',
+        'txt-refresh':     'Atualizar',
+        'btn-prev':        '← 3 meses',
+        'btn-today':       'Hoje',
+        'btn-next':        '3 meses →',
+        'col-header':      'FASE / TAREFA',
+        'leg-milestone':   'Marco',
+        'leg-today':       'Hoje',
+        'leg-launch':      'Data de lançamento',
+        'loading':         'Carregando dados da planilha...',
+        'error-noid':      'Planilha não configurada. Execute createRoadmapSheet() no editor do Apps Script e cole o ID em Code.gs.',
+        'error-generic':   'Erro ao carregar dados.',
+        'no-date':         'A definir',
+        'today-label':     'Hoje',
+        'status-in-progress': 'EM ANDAMENTO',
+        'status-planned':  'PLANEJADO',
+        'status-done':     'CONCLUÍDO',
+        'status-blocked':  'BLOQUEADO',
+        'status-tbd':      'A DEFINIR',
       },
       en: {
-        'txt-project':'Radar Chatbot · Employee Journey','txt-badge':'Internal use only',
-        'txt-tab-fases':'Phases','txt-tab-roadmap':'Roadmap','txt-tab-discovery':'Discovery',
-        'txt-hero-label':'OVERVIEW · TIMELINE','txt-hero-highlight':'Roadmap',
-        'txt-hero-sub':'Phases and tasks on a shared timeline. Update the spreadsheet, then refresh here.',
-        'txt-date-sub':'Click a task to see details',
-        'txt-launch-label':'Product launch date','txt-refresh':'Refresh',
-        'btn-prev':'← 3 months','btn-today':'Today','btn-next':'3 months →',
-        'col-header':'PHASE / TASK',
-        'leg-phase1':'Phase 1','leg-phase2':'Phase 2','leg-phase3':'Phase 3','leg-phase4':'Phase 4+',
-        'leg-milestone':'Milestone','leg-today':'Today','leg-launch':'Launch date',
-        'loading':'Loading data from spreadsheet...',
-        'error-noid':'Spreadsheet not configured. Run createRoadmapSheet() in the Apps Script editor and paste the ID into Code.gs.',
-        'error-generic':'Error loading data.',
-        'status-in-progress':'IN PROGRESS','status-planned':'PLANNED','status-tbd':'TO BE DEFINED'
+        'txt-project':     'Radar Chatbot · Employee Journey',
+        'txt-badge':       'Internal use only',
+        'txt-tab-fases':   'Phases',
+        'txt-tab-roadmap': 'Roadmap',
+        'txt-tab-discovery':'Discovery',
+        'txt-hero-label':  'OVERVIEW · TIMELINE',
+        'txt-hero-highlight':'Roadmap',
+        'txt-hero-sub':    'Phases and tasks on a shared timeline. Update the spreadsheet, then refresh here.',
+        'txt-date-sub':    'Click a task to see details',
+        'txt-launch-label':'Product launch date',
+        'txt-refresh':     'Refresh',
+        'btn-prev':        '← 3 months',
+        'btn-today':       'Today',
+        'btn-next':        '3 months →',
+        'col-header':      'PHASE / TASK',
+        'leg-phase1':      'Phase 1',
+        'leg-phase2':      'Phase 2',
+        'leg-phase3':      'Phase 3',
+        'leg-phase4':      'Phase 4',
+        'leg-milestone':   'Milestone',
+        'leg-today':       'Today',
+        'leg-launch':      'Launch date',
+        'loading':         'Loading data from spreadsheet...',
+        'error-noid':      'Spreadsheet not configured. Run createRoadmapSheet() in the Apps Script editor and paste the ID into Code.gs.',
+        'error-generic':   'Error loading data.',
+        'no-date':         'To be defined',
+        'today-label':     'Today',
+        'status-in-progress': 'IN PROGRESS',
+        'status-planned':  'PLANNED',
+        'status-done':     'DONE',
+        'status-blocked':  'BLOCKED',
+        'status-tbd':      'TO BE DEFINED',
       }
     };
 
-    const PX_PER_DAY  = 5;
-    const VIEW_MONTHS = 6;
+    // ── CONSTANTS ──
+    const PX_PER_DAY  = 5;   // pixels per day
+    const VIEW_MONTHS = 6;   // months visible at once
     const DAY_MS      = 86400000;
-    const ROW_H_PHASE = 44;
-    const ROW_H_TASK  = 36;
+    const ROW_H_PHASE = 44;  // phase header row height
+    const ROW_H_TASK  = 36;  // task row height
+    const HEAD_H      = 50;  // total header height (months + days)
 
+    // Colors per phase_id (CI&T palette only)
     const PHASE_COLORS = {
-      1: { bar: '#FA5A50', text: '#FFFFFF' },
-      2: { bar: '#000050', text: '#FFFFFF' },
-      3: { bar: '#B4DCFA', text: '#000050' }
+      1: { bar: '#FA5A50', text: '#FFFFFF' },  // coral
+      2: { bar: '#000050', text: '#FFFFFF' },  // navy
+      3: { bar: '#B4DCFA', text: '#000050' },  // light-blue
     };
-    function phaseColor(id) { return PHASE_COLORS[id] || { bar: '#D2D4DC', text: '#000050' }; }
-    function statusStyle(s) {
-      s = String(s||'').toUpperCase();
-      if (s==='IN PROGRESS') return 'background:#FA5A50;color:#fff';
-      if (s==='PLANNED')     return 'background:#000050;color:#fff';
+    function phaseColor(id) {
+      return PHASE_COLORS[id] || { bar: '#D2D4DC', text: '#000050' };
+    }
+
+    // Status badge styles
+    function statusStyle(status) {
+      const s = String(status || '').toUpperCase();
+      if (s === 'IN PROGRESS') return 'background:#FA5A50;color:#fff';
+      if (s === 'PLANNED')     return 'background:#000050;color:#fff';
+      if (s === 'DONE')        return 'background:#B4DCFA;color:#000050';
+      if (s === 'BLOCKED')     return 'background:#690037;color:#fff';
       return 'background:#D2D4DC;color:#000050';
     }
-    function statusLabel(s) {
-      s = String(s||'').toUpperCase();
-      if (s==='IN PROGRESS') return t('status-in-progress');
-      if (s==='PLANNED')     return t('status-planned');
+    function statusLabel(status, lang) {
+      const s = String(status || '').toUpperCase();
+      if (s === 'IN PROGRESS') return t('status-in-progress');
+      if (s === 'PLANNED')     return t('status-planned');
+      if (s === 'DONE')        return t('status-done');
+      if (s === 'BLOCKED')     return t('status-blocked');
       return t('status-tbd');
     }
 
     // ── STATE ──
     const BASE_URL = '<?= serviceUrl ?>';
     let currentLang  = '<?= lang ?>' || 'pt';
-    let viewStart    = _monthStart(new Date());
+    let viewStart    = _monthStart(new Date()); // view window start
     let roadmapData  = null;
-    let launchDate   = null;
+    let launchDate   = null; // ISO string or null
 
+    // ── HELPERS ──
     function t(k) { return (ui[currentLang]&&ui[currentLang][k])||(ui.en&&ui.en[k])||k; }
-    function _monthStart(d) { return new Date(d.getFullYear(), d.getMonth(), 1); }
-    function _addMonths(d, n) { const r=new Date(d); r.setMonth(r.getMonth()+n); return r; }
-    function _daysBetween(a, b) { return Math.round((b-a)/DAY_MS); }
-    function _isoToDate(iso) { if(!iso) return null; const [y,m,d]=iso.split('-').map(Number); return new Date(y,m-1,d); }
-    function _fmtMonthYear(d) { return d.toLocaleDateString(currentLang==='pt'?'pt-BR':'en-US',{month:'short',year:'2-digit'}); }
-    function _daysInMonth(y,m) { return new Date(y,m+1,0).getDate(); }
 
+    function _monthStart(d) {
+      return new Date(d.getFullYear(), d.getMonth(), 1);
+    }
+
+    function _addMonths(d, n) {
+      const r = new Date(d);
+      r.setMonth(r.getMonth() + n);
+      return r;
+    }
+
+    function _daysBetween(a, b) {
+      return Math.round((b - a) / DAY_MS);
+    }
+
+    function _isoToDate(iso) {
+      if (!iso) return null;
+      const [y, m, d] = iso.split('-').map(Number);
+      return new Date(y, m - 1, d);
+    }
+
+    function _fmtMonthYear(d, lang) {
+      return d.toLocaleDateString(lang === 'pt' ? 'pt-BR' : 'en-US', { month: 'short', year: '2-digit' });
+    }
+
+    function _daysInMonth(y, m) {
+      return new Date(y, m + 1, 0).getDate();
+    }
+
+    // ── LOAD DATA ────────────────────────────────────────────────────
     function loadData() {
       const btn = document.getElementById('refresh-btn');
       if (btn) btn.classList.add('loading');
       showState('<div class="spinner"></div>' + t('loading'));
+
       if (typeof google !== 'undefined' && google.script) {
         google.script.run
-          .withSuccessHandler(function(data) { if(btn) btn.classList.remove('loading'); onDataLoaded(data); })
+          .withSuccessHandler(function(data) {
+            if (btn) btn.classList.remove('loading');
+            onDataLoaded(data);
+          })
           .withFailureHandler(function(err) {
-            if(btn) btn.classList.remove('loading');
-            const msg = String(err&&err.message||err);
-            showState('⚠ ' + (msg.indexOf('ROADMAP_SHEET_ID')!==-1 ? t('error-noid') : t('error-generic')+' '+msg));
+            if (btn) btn.classList.remove('loading');
+            const msg = String(err && err.message || err);
+            const isNoid = msg.indexOf('ROADMAP_SHEET_ID') !== -1;
+            showState('⚠ ' + (isNoid ? t('error-noid') : t('error-generic') + ' ' + msg));
           })
           .getRoadmapData();
       } else {
+        // Dev mode: load sample data
         if (btn) btn.classList.remove('loading');
         onDataLoaded(SAMPLE_DATA);
       }
@@ -296,15 +419,18 @@
       roadmapData = data;
       if (data.launchDate) {
         launchDate = data.launchDate;
-        const inp = document.getElementById('launch-date-input');
-        if (inp) inp.value = launchDate;
+        const input = document.getElementById('launch-date-input');
+        if (input) input.value = launchDate;
       }
+      // Auto-set viewStart to 1 month before first dated task
       const allDates = [];
-      data.phases.forEach(p => p.tasks.forEach(task => { if(task.startDate) allDates.push(_isoToDate(task.startDate).getTime()); }));
+      data.phases.forEach(p => p.tasks.forEach(task => {
+        if (task.startDate) allDates.push(_isoToDate(task.startDate));
+      }));
       if (allDates.length) {
         const minDate = new Date(Math.min(...allDates));
         viewStart = _monthStart(minDate);
-        viewStart.setMonth(viewStart.getMonth()-1);
+        viewStart.setMonth(viewStart.getMonth() - 1);
       }
       buildGantt();
     }
@@ -315,148 +441,223 @@
       document.getElementById('gantt-legend').style.display = 'none';
     }
 
+    // ── BUILD GANTT ───────────────────────────────────────────────────
     function buildGantt() {
       if (!roadmapData) return;
-      const viewEnd   = _addMonths(viewStart, VIEW_MONTHS);
-      const totalDays = _daysBetween(viewStart, viewEnd);
-      const timelineW = totalDays * PX_PER_DAY;
-      const today     = new Date();
-      const todayX    = _daysBetween(viewStart, today) * PX_PER_DAY;
-      const launchX   = launchDate ? _daysBetween(viewStart, _isoToDate(launchDate)) * PX_PER_DAY : null;
 
-      const fmt = d => d.toLocaleDateString(currentLang==='pt'?'pt-BR':'en-US',{month:'short',year:'numeric'});
-      document.getElementById('txt-date-range').textContent = fmt(viewStart) + ' → ' + fmt(_addMonths(viewEnd,-1));
+      const viewEnd    = _addMonths(viewStart, VIEW_MONTHS);
+      const totalDays  = _daysBetween(viewStart, viewEnd);
+      const timelineW  = totalDays * PX_PER_DAY;
+      const today      = new Date();
+      const todayX     = _daysBetween(viewStart, today) * PX_PER_DAY;
+      const launchX    = launchDate ? _daysBetween(viewStart, _isoToDate(launchDate)) * PX_PER_DAY : null;
 
-      let hh = `<div class="gantt-head-label">${t('col-header')}</div><div class="gantt-head-timeline" style="width:${timelineW}px">`;
-      hh += '<div class="gantt-months">';
-      let dd = new Date(viewStart);
-      while (dd < viewEnd) {
-        const eom = new Date(dd.getFullYear(), dd.getMonth()+1, 0);
-        const es  = dd < viewStart ? viewStart : dd;
-        const ee  = eom > viewEnd ? viewEnd : eom;
-        const days = _daysBetween(es,ee)+1;
-        hh += `<div class="gantt-month" style="width:${days*PX_PER_DAY}px">${_fmtMonthYear(dd)}</div>`;
-        dd = new Date(dd.getFullYear(), dd.getMonth()+1, 1);
+      // Update date range display
+      const fmt = d => d.toLocaleDateString(currentLang === 'pt' ? 'pt-BR' : 'en-US', { month: 'short', year: 'numeric' });
+      document.getElementById('txt-date-range').textContent = fmt(viewStart) + ' → ' + fmt(_addMonths(viewEnd, -1));
+
+      // ── Header ──
+      let headHtml = `<div class="gantt-head-label">${t('col-header')}</div><div class="gantt-head-timeline" style="width:${timelineW}px">`;
+      // Month row
+      headHtml += `<div class="gantt-months">`;
+      let d = new Date(viewStart);
+      while (d < viewEnd) {
+        const dInMonth  = _daysInMonth(d.getFullYear(), d.getMonth());
+        const startDay  = d < viewStart ? viewStart : d;
+        const endOfMonth = new Date(d.getFullYear(), d.getMonth() + 1, 0);
+        const endDay    = endOfMonth > viewEnd ? viewEnd : endOfMonth;
+        const days      = _daysBetween(startDay, endDay) + 1;
+        const w         = days * PX_PER_DAY;
+        headHtml += `<div class="gantt-month" style="width:${w}px">${_fmtMonthYear(d, currentLang)}</div>`;
+        d = new Date(d.getFullYear(), d.getMonth() + 1, 1);
       }
-      hh += '</div><div class="gantt-days">';
-      for (let i=0; i<totalDays; i++) {
-        const di = new Date(viewStart.getTime() + i*DAY_MS);
-        const dn = di.getDate();
-        const show = dn===1||dn===8||dn===15||dn===22;
-        const bc = dn===1 ? 'var(--ciandt-grey-mid)' : 'var(--ciandt-grey-light)';
-        hh += `<div class="gantt-day-mark" style="width:${PX_PER_DAY}px;border-right-color:${bc}">${show?dn:''}</div>`;
+      headHtml += `</div>`;
+      // Day ticks row (show 1, 8, 15, 22 of each month)
+      headHtml += `<div class="gantt-days">`;
+      for (let i = 0; i < totalDays; i++) {
+        const dd = new Date(viewStart.getTime() + i * DAY_MS);
+        const dayNum = dd.getDate();
+        const show   = dayNum === 1 || dayNum === 8 || dayNum === 15 || dayNum === 22;
+        const label  = show ? dayNum : '';
+        const borderColor = dayNum === 1 ? 'var(--ciandt-grey-mid)' : 'var(--ciandt-grey-light)';
+        headHtml += `<div class="gantt-day-mark" style="width:${PX_PER_DAY}px;border-right-color:${borderColor}">${label}</div>`;
       }
-      hh += '</div></div>';
-      document.getElementById('gantt-head').innerHTML = hh;
+      headHtml += `</div></div>`;
+      document.getElementById('gantt-head').innerHTML = headHtml;
 
-      let bh = '';
+      // ── Body ──
+      let bodyHtml = '';
+
       roadmapData.phases.forEach(phase => {
-        const clr = phaseColor(phase.id);
-        bh += `<div class="gantt-row gantt-phase-row" style="height:${ROW_H_PHASE}px">`;
-        bh += `<div class="gantt-row-label"><span class="label-text">${phase.name}</span>`;
-        bh += `<span class="gantt-phase-badge" style="${statusStyle(phase.status)}">${statusLabel(phase.status)}</span></div>`;
-        bh += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_PHASE}px;background:var(--ciandt-navy)">`;
+        const clr  = phaseColor(phase.id);
+        const badge = statusLabel(phase.status, currentLang);
 
-        const pss = []; const pee = [];
-        phase.tasks.forEach(task => {
-          if(task.startDate) pss.push(_isoToDate(task.startDate).getTime());
-          if(task.endDate||task.startDate) pee.push(_isoToDate(task.endDate||task.startDate).getTime());
-        });
-        if (pss.length) {
-          const ps = Math.max(0, _daysBetween(viewStart, new Date(Math.min(...pss)))*PX_PER_DAY);
-          const pe = Math.min(timelineW, _daysBetween(viewStart, new Date(Math.max(...pee)))*PX_PER_DAY+PX_PER_DAY);
-          if (pe>ps) bh += `<div class="phase-bg-bar" style="left:${ps}px;width:${pe-ps}px;background:${clr.bar}"></div>`;
+        // Phase header row
+        bodyHtml += `<div class="gantt-row gantt-phase-row" style="height:${ROW_H_PHASE}px">`;
+        bodyHtml += `<div class="gantt-row-label"><span class="label-text">${phase.name}</span>`;
+        bodyHtml += `<span class="gantt-phase-badge" style="${statusStyle(phase.status)}">${badge}</span></div>`;
+        bodyHtml += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_PHASE}px;background:var(--ciandt-navy)">`;
+
+        // Phase bg bar (min/max of tasks)
+        const phaseDates = phase.tasks.filter(t => t.startDate).map(t => _isoToDate(t.startDate).getTime());
+        const phaseEnds  = phase.tasks.filter(t => t.endDate || t.startDate).map(t => _isoToDate(t.endDate || t.startDate).getTime());
+        if (phaseDates.length) {
+          const ps = Math.max(0, _daysBetween(viewStart, new Date(Math.min(...phaseDates))) * PX_PER_DAY);
+          const pe = Math.min(timelineW, _daysBetween(viewStart, new Date(Math.max(...phaseEnds))) * PX_PER_DAY + PX_PER_DAY);
+          if (pe > ps) {
+            bodyHtml += `<div class="phase-bg-bar" style="left:${ps}px;width:${pe-ps}px;background:${clr.bar}"></div>`;
+          }
         }
-        if (todayX>=0&&todayX<=timelineW) bh += `<div class="today-line" style="left:${todayX}px"></div>`;
-        if (launchX!==null&&launchX>=0&&launchX<=timelineW) bh += `<div class="launch-line" style="left:${launchX}px"></div>`;
-        bh += '</div></div>';
 
+        // Today line in phase row
+        if (todayX >= 0 && todayX <= timelineW) {
+          bodyHtml += `<div class="today-line" style="left:${todayX}px"></div>`;
+        }
+        if (launchX !== null && launchX >= 0 && launchX <= timelineW) {
+          bodyHtml += `<div class="launch-line" style="left:${launchX}px"></div>`;
+        }
+        bodyHtml += `</div></div>`;
+
+        // Task rows
         phase.tasks.forEach(task => {
-          bh += `<div class="gantt-row gantt-task-row" style="height:${ROW_H_TASK}px">`;
-          const indent = task.isMilestone ? '<span class="milestone-dot"></span>' : '<span style="width:12px;flex-shrink:0;display:inline-block"></span>';
-          bh += `<div class="gantt-row-label">${indent}<span class="label-text">${task.name}</span></div>`;
-          bh += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_TASK}px">`;
+          bodyHtml += `<div class="gantt-row gantt-task-row" style="height:${ROW_H_TASK}px">`;
+          // Label
+          const indent = task.isMilestone
+            ? `<span class="milestone-dot"></span>`
+            : `<span style="width:12px;flex-shrink:0;display:inline-block"></span>`;
+          bodyHtml += `<div class="gantt-row-label">${indent}<span class="label-text">${task.name}</span></div>`;
+          // Bar area
+          bodyHtml += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_TASK}px">`;
+
           if (task.startDate) {
             const sx = _daysBetween(viewStart, _isoToDate(task.startDate)) * PX_PER_DAY;
+
             if (task.isMilestone) {
-              if (sx>=-8&&sx<=timelineW+8) bh += `<div class="milestone-diamond" style="left:${sx-6}px"></div>`;
+              // Diamond (rotated square)
+              if (sx >= -8 && sx <= timelineW + 8) {
+                bodyHtml += `<div class="milestone-diamond" style="left:${sx - 6}px"></div>`;
+              }
             } else {
-              const ex = task.endDate ? _daysBetween(viewStart,_isoToDate(task.endDate))*PX_PER_DAY+PX_PER_DAY : sx+PX_PER_DAY*7;
-              const left = Math.max(0,sx); const right = Math.min(timelineW,ex); const w = right-left;
-              if (w>0) {
-                bh += `<div class="task-bar" style="left:${left}px;width:${w}px;background:${clr.bar};color:${clr.text}">`;
-                if (w>40) bh += `<span>${task.name}</span>`;
-                bh += '</div>';
+              const ex = task.endDate
+                ? _daysBetween(viewStart, _isoToDate(task.endDate)) * PX_PER_DAY + PX_PER_DAY
+                : sx + PX_PER_DAY * 7;
+              const left  = Math.max(0, sx);
+              const right = Math.min(timelineW, ex);
+              const w     = right - left;
+              if (w > 0) {
+                bodyHtml += `<div class="task-bar" style="left:${left}px;width:${w}px;background:${clr.bar};color:${clr.text}">`;
+                if (w > 40) bodyHtml += `<span>${task.name}</span>`;
+                bodyHtml += `</div>`;
               }
             }
           }
-          if (todayX>=0&&todayX<=timelineW) bh += `<div class="today-line" style="left:${todayX}px"></div>`;
-          if (launchX!==null&&launchX>=0&&launchX<=timelineW) bh += `<div class="launch-line" style="left:${launchX}px"></div>`;
-          bh += '</div></div>';
+
+          // Today + launch lines per task row
+          if (todayX >= 0 && todayX <= timelineW) {
+            bodyHtml += `<div class="today-line" style="left:${todayX}px"></div>`;
+          }
+          if (launchX !== null && launchX >= 0 && launchX <= timelineW) {
+            bodyHtml += `<div class="launch-line" style="left:${launchX}px"></div>`;
+          }
+          bodyHtml += `</div></div>`;
         });
       });
 
-      document.getElementById('gantt-body').innerHTML = bh;
-      document.getElementById('gantt-legend').style.display = 'flex';
-      ['leg-milestone','leg-today','leg-launch'].forEach(id => { const el=document.getElementById(id); if(el) el.textContent=t(id); });
+      document.getElementById('gantt-body').innerHTML = bodyHtml;
 
+      // Show legend
+      document.getElementById('gantt-legend').style.display = 'flex';
+      ['leg-phase1','leg-phase2','leg-phase3','leg-phase4','leg-milestone','leg-today','leg-launch'].forEach(id => {
+        const label = t(id);
+        if (label && label !== id) {
+          const el = document.getElementById(id);
+          if (el) el.textContent = label;
+        }
+      });
+
+      // Scroll to today
       const scroll = document.getElementById('gantt-scroll');
-      if (scroll && todayX>0) setTimeout(() => { scroll.scrollLeft = Math.max(0,todayX-150); }, 50);
+      if (scroll && todayX > 0) {
+        setTimeout(() => {
+          scroll.scrollLeft = Math.max(0, todayX - 150);
+        }, 50);
+      }
     }
 
-    function navigate(months) { viewStart = _addMonths(viewStart,months); buildGantt(); }
-    function goToToday() { viewStart = _addMonths(_monthStart(new Date()),-1); buildGantt(); }
-    function onLaunchDateChange(val) { launchDate = val||null; buildGantt(); }
+    // ── NAVIGATION ───────────────────────────────────────────────────
+    function navigate(months) {
+      viewStart = _addMonths(viewStart, months);
+      buildGantt();
+    }
 
+    function goToToday() {
+      viewStart = _addMonths(_monthStart(new Date()), -1);
+      buildGantt();
+    }
+
+    function onLaunchDateChange(val) {
+      launchDate = val || null;
+      buildGantt();
+    }
+
+    // ── LANGUAGE ─────────────────────────────────────────────────────
     function applyLang(l) {
       currentLang = l;
-      const dict = ui[l]||ui.pt;
-      Object.keys(dict).forEach(id => { const el=document.getElementById(id); if(el) el.textContent=dict[id]; });
-      document.getElementById('btn-pt').classList.toggle('active', l==='pt');
-      document.getElementById('btn-en').classList.toggle('active', l==='en');
-
+      const dict  = ui[l] || ui.pt;
+      Object.keys(dict).forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.textContent = dict[id];
+      });
+      document.getElementById('btn-pt').classList.toggle('active', l === 'pt');
+      document.getElementById('btn-en').classList.toggle('active', l === 'en');
       const pageMap = { 'tab-fases': 'fases', 'tab-roadmap': 'roadmap', 'tab-discovery': 'discovery' };
       Object.keys(pageMap).forEach(id => {
         const a = document.getElementById(id);
         if (a) a.href = (BASE_URL || '') + '?page=' + pageMap[id] + '&lang=' + l;
       });
-
       if (roadmapData) buildGantt();
-      try { const u=new URL(window.location.href); u.searchParams.set('lang',l); history.replaceState(null,'',u.toString()); } catch(e){}
+      try {
+        const url = new URL(window.location.href);
+        url.searchParams.set('lang', l);
+        history.replaceState(null, '', url.toString());
+      } catch(e) {}
     }
 
     function setLang(l) { applyLang(l); }
 
+    // ── SAMPLE DATA (dev / fallback) ─────────────────────────────────
     const SAMPLE_DATA = {
       launchDate: '2026-11-30',
       phases: [
-        { id:1, name:'Phase 1 — Foundation', status:'IN PROGRESS', tasks:[
-          {name:'Employee journey mapping',isMilestone:false,startDate:'2026-07-01',endDate:'2026-07-31'},
-          {name:'Scope alignment with stakeholders',isMilestone:false,startDate:'2026-07-10',endDate:'2026-07-25'},
-          {name:'PMO governance charter',isMilestone:false,startDate:'2026-07-15',endDate:'2026-07-25'},
-          {name:'Official project kickoff',isMilestone:true,startDate:'2026-07-31',endDate:null}
+        { id: 1, name: 'Phase 1 — Foundation', status: 'IN PROGRESS', tasks: [
+          { name: 'Employee journey mapping',         isMilestone: false, startDate: '2026-07-01', endDate: '2026-07-31' },
+          { name: 'Scope alignment with stakeholders',isMilestone: false, startDate: '2026-07-10', endDate: '2026-07-25' },
+          { name: 'PMO governance charter',           isMilestone: false, startDate: '2026-07-15', endDate: '2026-07-25' },
+          { name: 'Official project kickoff',         isMilestone: true,  startDate: '2026-07-31', endDate: null }
         ]},
-        { id:2, name:'Phase 2 — Expansion', status:'PLANNED', tasks:[
-          {name:'Onboarding flows in chatbot',isMilestone:false,startDate:'2026-09-01',endDate:'2026-10-07'},
-          {name:'Benefits & FAQ flows',isMilestone:false,startDate:'2026-09-15',endDate:'2026-10-07'},
-          {name:'Communication plan — Phase 2',isMilestone:false,startDate:'2026-09-01',endDate:'2026-09-21'},
-          {name:'Phase 2 launch',isMilestone:true,startDate:'2026-10-07',endDate:null}
+        { id: 2, name: 'Phase 2 — Expansion', status: 'PLANNED', tasks: [
+          { name: 'Onboarding flows in chatbot',  isMilestone: false, startDate: '2026-09-01', endDate: '2026-10-07' },
+          { name: 'Benefits & FAQ flows',         isMilestone: false, startDate: '2026-09-15', endDate: '2026-10-07' },
+          { name: 'Communication plan — Phase 2', isMilestone: false, startDate: '2026-09-01', endDate: '2026-09-21' },
+          { name: 'Phase 2 launch',               isMilestone: true,  startDate: '2026-10-07', endDate: null }
         ]},
-        { id:3, name:'Phase 3 — Depth', status:'PLANNED', tasks:[
-          {name:'System integrations (PTO, payroll)',isMilestone:false,startDate:'2026-10-18',endDate:'2026-11-23'},
-          {name:'Career & development flows',isMilestone:false,startDate:'2026-10-18',endDate:'2026-11-23'},
-          {name:'Phase 3 launch',isMilestone:true,startDate:'2026-11-23',endDate:null}
+        { id: 3, name: 'Phase 3 — Depth', status: 'PLANNED', tasks: [
+          { name: 'System integrations (PTO, payroll)', isMilestone: false, startDate: '2026-10-18', endDate: '2026-11-23' },
+          { name: 'Career & development flows',         isMilestone: false, startDate: '2026-10-18', endDate: '2026-11-23' },
+          { name: 'Phase 3 launch',                     isMilestone: true,  startDate: '2026-11-23', endDate: null }
         ]},
-        { id:4, name:'Phase 4 — Sensitive', status:'TO BE DEFINED', tasks:[
-          {name:'Sensitive flow mapping',isMilestone:false,startDate:null,endDate:null},
-          {name:'Legal & compliance validation',isMilestone:false,startDate:null,endDate:null},
-          {name:'Phase 4 launch',isMilestone:true,startDate:null,endDate:null}
+        { id: 4, name: 'Phase 4 — Sensitive', status: 'TO BE DEFINED', tasks: [
+          { name: 'Sensitive flow mapping',        isMilestone: false, startDate: null, endDate: null },
+          { name: 'Legal & compliance validation', isMilestone: false, startDate: null, endDate: null },
+          { name: 'Phase 4 launch',                isMilestone: true,  startDate: null, endDate: null }
         ]}
       ]
     };
 
+    // ── INIT ─────────────────────────────────────────────────────────
     applyLang(currentLang);
     loadData();
   </script>
+
 </body>
 </html>
