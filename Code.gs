@@ -105,6 +105,7 @@ function getRoadmapData() {
         name:        String(r[col['task_name']] || '').trim(),
         isMilestone: isMilestone,
         status:      String(r[col['phase_status']] || '').trim(),
+        owner:       String(r[col['owner']] || '').trim(),
         startDate:   r[col['start_date']] ? _fmtDate(r[col['start_date']]) : null,
         endDate:     r[col['end_date']]   ? _fmtDate(r[col['end_date']])   : null
       });
@@ -149,38 +150,38 @@ function createRoadmapSheet() {
 
   // ── Roadmap sheet ──
   const rm   = ss.insertSheet('Roadmap');
-  const hdrs = ['type', 'phase_id', 'phase_name', 'phase_status', 'task_name', 'start_date', 'end_date', 'is_milestone'];
+  const hdrs = ['type', 'phase_id', 'phase_name', 'phase_status', 'task_name', 'owner', 'start_date', 'end_date', 'is_milestone'];
   rm.getRange(1, 1, 1, hdrs.length).setValues([hdrs]).setFontWeight('bold').setBackground('#EEF0F3');
 
   const data = [
     // Phase 1
-    ['PHASE',     1, 'Phase 1 — Foundation',  'IN PROGRESS',   '',                                    '',            '',            'FALSE'],
-    ['TASK',      1, '',                       '',              'Employee journey mapping',             '01/07/2026',  '31/07/2026',  'FALSE'],
-    ['TASK',      1, '',                       '',              'Scope alignment with stakeholders',    '10/07/2026',  '25/07/2026',  'FALSE'],
-    ['TASK',      1, '',                       '',              'PMO governance charter',               '15/07/2026',  '25/07/2026',  'FALSE'],
-    ['MILESTONE', 1, '',                       '',              'Official project kickoff',             '31/07/2026',  '',            'TRUE'],
+    ['PHASE',     1, 'Phase 1 — Foundation',  'IN PROGRESS',   '',                                    '',            '',            '',            'FALSE'],
+    ['TASK',      1, '',                       '',              'Employee journey mapping',             '',            '01/07/2026',  '31/07/2026',  'FALSE'],
+    ['TASK',      1, '',                       '',              'Scope alignment with stakeholders',    '',            '10/07/2026',  '25/07/2026',  'FALSE'],
+    ['TASK',      1, '',                       '',              'PMO governance charter',               '',            '15/07/2026',  '25/07/2026',  'FALSE'],
+    ['MILESTONE', 1, '',                       '',              'Official project kickoff',             '',            '31/07/2026',  '',            'TRUE'],
     // Phase 2
-    ['PHASE',     2, 'Phase 2 — Expansion',   'PLANNED',       '',                                    '',            '',            'FALSE'],
-    ['TASK',      2, '',                       '',              'Onboarding flows in chatbot',          '01/09/2026',  '07/10/2026',  'FALSE'],
-    ['TASK',      2, '',                       '',              'Benefits & FAQ flows',                 '15/09/2026',  '07/10/2026',  'FALSE'],
-    ['TASK',      2, '',                       '',              'Communication plan — Phase 2',         '01/09/2026',  '21/09/2026',  'FALSE'],
-    ['MILESTONE', 2, '',                       '',              'Phase 2 launch',                       '07/10/2026',  '',            'TRUE'],
+    ['PHASE',     2, 'Phase 2 — Expansion',   'PLANNED',       '',                                    '',            '',            '',            'FALSE'],
+    ['TASK',      2, '',                       '',              'Onboarding flows in chatbot',          '',            '01/09/2026',  '07/10/2026',  'FALSE'],
+    ['TASK',      2, '',                       '',              'Benefits & FAQ flows',                 '',            '15/09/2026',  '07/10/2026',  'FALSE'],
+    ['TASK',      2, '',                       '',              'Communication plan — Phase 2',         '',            '01/09/2026',  '21/09/2026',  'FALSE'],
+    ['MILESTONE', 2, '',                       '',              'Phase 2 launch',                       '',            '07/10/2026',  '',            'TRUE'],
     // Phase 3
-    ['PHASE',     3, 'Phase 3 — Depth',       'PLANNED',       '',                                    '',            '',            'FALSE'],
-    ['TASK',      3, '',                       '',              'System integrations (PTO, payroll)',   '18/10/2026',  '23/11/2026',  'FALSE'],
-    ['TASK',      3, '',                       '',              'Career & development flows',           '18/10/2026',  '23/11/2026',  'FALSE'],
-    ['MILESTONE', 3, '',                       '',              'Phase 3 launch',                       '23/11/2026',  '',            'TRUE'],
+    ['PHASE',     3, 'Phase 3 — Depth',       'PLANNED',       '',                                    '',            '',            '',            'FALSE'],
+    ['TASK',      3, '',                       '',              'System integrations (PTO, payroll)',   '',            '18/10/2026',  '23/11/2026',  'FALSE'],
+    ['TASK',      3, '',                       '',              'Career & development flows',           '',            '18/10/2026',  '23/11/2026',  'FALSE'],
+    ['MILESTONE', 3, '',                       '',              'Phase 3 launch',                       '',            '23/11/2026',  '',            'TRUE'],
     // Phase 4
-    ['PHASE',     4, 'Phase 4 — Sensitive',   'TO BE DEFINED', '',                                    '',            '',            'FALSE'],
-    ['TASK',      4, '',                       '',              'Sensitive flow mapping',               '',            '',            'FALSE'],
-    ['TASK',      4, '',                       '',              'Legal & compliance validation',        '',            '',            'FALSE'],
-    ['MILESTONE', 4, '',                       '',              'Phase 4 launch',                       '',            '',            'TRUE'],
+    ['PHASE',     4, 'Phase 4 — Sensitive',   'TO BE DEFINED', '',                                    '',            '',            '',            'FALSE'],
+    ['TASK',      4, '',                       '',              'Sensitive flow mapping',               '',            '',            '',            'FALSE'],
+    ['TASK',      4, '',                       '',              'Legal & compliance validation',        '',            '',            '',            'FALSE'],
+    ['MILESTONE', 4, '',                       '',              'Phase 4 launch',                       '',            '',            '',            'TRUE'],
   ];
 
   rm.getRange(2, 1, data.length, hdrs.length).setValues(data);
 
   // Column widths
-  const widths = [120, 80, 220, 150, 260, 120, 120, 110];
+  const widths = [120, 80, 220, 150, 260, 120, 120, 120, 110];
   widths.forEach((w, i) => rm.setColumnWidth(i + 1, w));
 
   // Freeze header row
