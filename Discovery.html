@@ -7,7 +7,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    /* ── DESIGN TOKENS ── */
     :root {
       --ciandt-coral:      #FA5A50;
       --ciandt-deep-red:   #690037;
@@ -20,10 +22,17 @@
       --ciandt-grey-mid:   #D2D4DC;
       --ciandt-grey-dark:  #9A9EA6;
     }
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'DM Sans', sans-serif; background-color: var(--ciandt-grey-light); color: var(--ciandt-navy); min-height: 100vh; }
 
-    /* BRAND BAR */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background-color: var(--ciandt-grey-light);
+      color: var(--ciandt-navy);
+      min-height: 100vh;
+    }
+
+    /* ── BRAND BAR ── */
     .brand-bar { background-color: var(--ciandt-navy); padding: 10px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
     .brand-bar-left { display: flex; align-items: center; gap: 12px; }
     .brand-name { font-size: 13px; font-weight: 700; color: var(--ciandt-white); letter-spacing: 0.03em; white-space: nowrap; }
@@ -32,7 +41,7 @@
     .brand-project { font-size: 12px; font-weight: 500; color: var(--ciandt-white); white-space: nowrap; }
     .internal-badge { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.7); border: 1px solid rgba(255,255,255,0.25); padding: 3px 10px; border-radius: 999px; letter-spacing: 0.08em; text-transform: uppercase; white-space: nowrap; }
 
-    /* TAB NAV */
+    /* ── TAB NAV ── */
     .tab-nav { background-color: var(--ciandt-white); padding: 0 32px; display: flex; align-items: center; border-bottom: 1px solid var(--ciandt-grey-mid); overflow-x: auto; scrollbar-width: none; }
     .tab-nav::-webkit-scrollbar { display: none; }
     .tab-item { display: flex; align-items: center; gap: 7px; padding: 14px 18px; font-size: 13px; font-weight: 500; color: var(--ciandt-grey-dark); text-decoration: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: color 0.2s; flex-shrink: 0; }
@@ -43,7 +52,7 @@
     .lang-btn { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 600; padding: 4px 12px; border-radius: 999px; border: none; cursor: pointer; background: transparent; color: var(--ciandt-grey-dark); letter-spacing: 0.06em; transition: all 0.2s; }
     .lang-btn.active { background: var(--ciandt-navy); color: var(--ciandt-white); }
 
-    /* HERO */
+    /* ── HERO ── */
     .hero { background-color: var(--ciandt-navy); margin: 24px 32px 16px; border-radius: 8px; border-bottom: 3px solid var(--ciandt-coral); padding: 32px 40px; position: relative; overflow: hidden; }
     .hero-shapes { position: absolute; inset: 0; pointer-events: none; }
     .hero-label { font-size: 11px; font-weight: 600; color: var(--ciandt-coral); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 10px; position: relative; z-index: 1; }
@@ -52,7 +61,7 @@
     .hero-title .highlight { color: var(--ciandt-coral); }
     .hero-subtitle { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.65); max-width: 560px; line-height: 1.65; position: relative; z-index: 1; }
 
-    /* ACCORDION */
+    /* ── ACCORDION ── */
     .accordion-container { padding: 0 32px 48px; display: flex; flex-direction: column; gap: 8px; }
     .accordion-item { background: var(--ciandt-white); border-radius: 8px; border: 1px solid var(--ciandt-grey-mid); overflow: hidden; transition: box-shadow 0.2s, border-color 0.2s; }
     .accordion-item:hover { box-shadow: 0 2px 16px rgba(0,0,80,0.07); border-color: var(--ciandt-grey-dark); }
@@ -68,7 +77,7 @@
     .accordion-body { display: none; padding: 0 24px 24px; }
     .accordion-item.open .accordion-body { display: block; }
 
-    /* NOTES */
+    /* ── NOTES SECTION ── */
     .notes-section { margin-bottom: 16px; }
     .notes-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
     .notes-label { font-size: 10px; font-weight: 600; color: var(--ciandt-grey-dark); letter-spacing: 0.1em; text-transform: uppercase; }
@@ -80,14 +89,14 @@
     .save-btn { margin-top: 8px; font-family: 'DM Sans', sans-serif; font-size: 12px; font-weight: 600; padding: 8px 24px; background: var(--ciandt-navy); color: var(--ciandt-white); border: none; border-radius: 999px; cursor: pointer; transition: opacity 0.2s; }
     .save-btn:hover { opacity: 0.85; }
 
-    /* INSIGHTS */
+    /* ── INSIGHTS SECTION ── */
     .insights-section { margin-top: 4px; }
     .insights-label { display: block; font-size: 10px; font-weight: 700; color: var(--ciandt-coral); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 10px; }
     .insights-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
     .insights-list li { display: flex; gap: 10px; font-size: 13px; line-height: 1.6; color: var(--ciandt-navy); }
     .insights-dot { color: var(--ciandt-coral); font-size: 9px; margin-top: 5px; flex-shrink: 0; line-height: 1; }
 
-    /* COMPARISON TABLE */
+    /* ── COMPARISON TABLE ── */
     .comparison-wrapper { overflow-x: auto; margin-bottom: 8px; }
     .comparison-table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 580px; }
     .comparison-table th { padding: 10px 14px; font-weight: 600; font-size: 12px; text-align: left; }
@@ -98,9 +107,10 @@
     .th-radar  { background: var(--ciandt-grey-mid); color: var(--ciandt-navy); }
     .comparison-table td { padding: 12px 14px; border-bottom: 1px solid var(--ciandt-grey-light); vertical-align: top; line-height: 1.6; font-size: 12px; color: var(--ciandt-navy); }
     .comparison-table tr:last-child td { border-bottom: none; }
-    .td-label { font-weight: 600; white-space: nowrap; }
+    .td-label { font-weight: 600; white-space: nowrap; font-size: 12px; }
     .comparison-note { font-size: 11px; color: var(--ciandt-grey-dark); font-style: italic; margin-top: 12px; }
 
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       .brand-bar { padding: 10px 16px; }
       .brand-context { display: none; }
@@ -113,6 +123,7 @@
 </head>
 <body>
 
+  <!-- BRAND BAR -->
   <header class="brand-bar">
     <div class="brand-bar-left">
       <span class="brand-name">CI&amp;T</span>
@@ -124,17 +135,29 @@
     <span class="internal-badge" id="txt-badge">Internal use only</span>
   </header>
 
+  <!-- TAB NAVIGATION -->
   <nav class="tab-nav">
-    <a class="tab-item" href="?page=fases&lang=pt" id="tab-fases">
-      <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/><rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/><rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/></svg>
+    <a class="tab-item" href="#" id="tab-fases">
+      <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
+        <rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/>
+        <rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/>
+        <rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/>
+        <rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/>
+      </svg>
       <span id="txt-tab-fases">Phases</span>
     </a>
-    <a class="tab-item" href="?page=roadmap&lang=pt" id="tab-roadmap">
-      <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><path d="M2 13 L5 5 L9 9 L13 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="3" r="1.5" fill="currentColor"/></svg>
+    <a class="tab-item" href="#" id="tab-roadmap">
+      <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
+        <path d="M2 13 L5 5 L9 9 L13 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="13" cy="3" r="1.5" fill="currentColor"/>
+      </svg>
       <span id="txt-tab-roadmap">Roadmap</span>
     </a>
-    <a class="tab-item active" href="?page=discovery&lang=pt" id="tab-discovery">
-      <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/><path d="M10 10 L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+    <a class="tab-item active" href="#" id="tab-discovery">
+      <svg viewBox="0 0 16 16" fill="none" width="15" height="15">
+        <circle cx="6.5" cy="6.5" r="4" stroke="currentColor" stroke-width="1.5"/>
+        <path d="M10 10 L14 14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
       <span id="txt-tab-discovery">Discovery</span>
     </a>
     <div class="tab-spacer"></div>
@@ -144,18 +167,30 @@
     </div>
   </nav>
 
+  <!-- HERO BANNER -->
   <section class="hero">
     <div class="hero-shapes" aria-hidden="true">
-      <svg style="position:absolute;right:-60px;top:-50px;width:260px;height:260px;"><circle cx="130" cy="130" r="130" fill="var(--ciandt-coral)" opacity="0.07"/></svg>
-      <svg style="position:absolute;right:80px;bottom:-40px;width:160px;height:160px;"><polygon points="80,0 160,160 0,160" fill="var(--ciandt-light-blue)" opacity="0.06"/></svg>
-      <svg style="position:absolute;right:-20px;top:40px;width:100px;height:100px;"><circle cx="50" cy="50" r="50" fill="var(--ciandt-pink)" opacity="0.05"/></svg>
+      <svg style="position:absolute; right:-60px; top:-50px; width:260px; height:260px;">
+        <circle cx="130" cy="130" r="130" fill="var(--ciandt-coral)" opacity="0.07"/>
+      </svg>
+      <svg style="position:absolute; right:80px; bottom:-40px; width:160px; height:160px;">
+        <polygon points="80,0 160,160 0,160" fill="var(--ciandt-light-blue)" opacity="0.06"/>
+      </svg>
+      <svg style="position:absolute; right:-20px; top:40px; width:100px; height:100px;">
+        <circle cx="50" cy="50" r="50" fill="var(--ciandt-pink)" opacity="0.05"/>
+      </svg>
     </div>
     <div class="hero-label" id="txt-hero-label">RESEARCH · ANALYSIS</div>
     <!-- REPLACE WITH PP FRAGMENT GLARE IN PRODUCTION -->
-    <h1 class="hero-title"><span id="txt-hero-prefix">Project </span><span class="highlight" id="txt-hero-highlight">Discovery</span></h1>
-    <p class="hero-subtitle" id="txt-hero-sub">Organize your research, data and hypotheses. Add your notes — insights are generated as you build this space.</p>
+    <h1 class="hero-title">
+      <span id="txt-hero-prefix">Project </span><span class="highlight" id="txt-hero-highlight">Discovery</span>
+    </h1>
+    <p class="hero-subtitle" id="txt-hero-sub">
+      Organize your research, data and hypotheses. Add your notes — insights are generated as you build this space.
+    </p>
   </section>
 
+  <!-- ACCORDION SECTIONS -->
   <main class="accordion-container">
 
     <div class="accordion-item" id="acc-context">
@@ -364,54 +399,34 @@ Manutenção alternativa (Notebook LM / Gemini):
     };
 
     const compRows = [
-      { key:'row-pros',
-        flow:'Complete with active messaging\nCould be developed for messaging only\nPotential CI&T shelf product for other clients\nLow-code maintenance\nInside Google Chat',
-        gemini:'Well-elaborated answers\nReads from received emails and chats\nInside Google Chat',
-        nb:'Date filter\nAutonomous document editing by areas\nWell-elaborated answers\nIntegrated analytics (users & queries)\nConnects to the internet\nSuggests questions',
-        radar:'Active messaging\nInside Google Chat\nData dashboard' },
-      { key:'row-cons',
-        flow:'Is the investment worth it compared to the other options?',
-        gemini:'No date filter\nNo active messaging\nFallback for content not in user\'s drive\nNo analytics data\nNo control over responses',
-        nb:'Up to 300 documents\nNo active messaging\nFallback for content not in database\nRequires document restructuring\nSlightly slow to respond',
-        radar:'Delivery gap vs. expectation\nLow-quality answers\nHigh fallback rate\nDifficult data access\nDoes not recognize synonyms\nNo prompt autonomy' },
-      { key:'row-pricing',
-        flow:'TCE: senior dev for 6 months',
-        gemini:'Consultation: free\nMessaging: to be developed',
-        nb:'Consultation: free\nMessaging: to be developed',
-        radar:'~R$ 22k/month' },
-      { key:'row-timing',
-        flow:'6 months of implementation',
-        gemini:'1 month of implementation',
-        nb:'1 month of implementation',
-        radar:'Contract ends Nov/26' },
-      { key:'row-roadmap',
-        flow:'Option 1: Dec/26\nOption 2: Jun/27',
-        gemini:'01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication',
-        nb:'01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication',
-        radar:'Ongoing' }
+      { key:'row-pros', flow:'Complete with active messaging\nCould be developed for messaging only\nPotential CI&T shelf product for other clients\nLow-code maintenance\nInside Google Chat', gemini:'Well-elaborated answers\nReads from received emails and chats\nInside Google Chat', nb:'Date filter\nAutonomous document editing by areas\nWell-elaborated answers\nIntegrated analytics (users & queries)\nConnects to the internet\nSuggests questions', radar:'Active messaging\nInside Google Chat\nData dashboard' },
+      { key:'row-cons', flow:'Is the investment worth it compared to the other options?', gemini:'No date filter\nNo active messaging\nFallback for content not in user\'s drive\nNo analytics data\nNo control over responses', nb:'Up to 300 documents\nNo active messaging\nFallback for content not in database\nRequires document restructuring\nSlightly slow to respond', radar:'Delivery gap vs. expectation\nLow-quality answers\nHigh fallback rate\nDifficult data access\nDoes not recognize synonyms\nNo prompt autonomy' },
+      { key:'row-pricing', flow:'TCE: senior dev for 6 months', gemini:'Consultation: free\nMessaging: to be developed', nb:'Consultation: free\nMessaging: to be developed', radar:'~R$ 22k/month' },
+      { key:'row-timing', flow:'6 months of implementation', gemini:'1 month of implementation', nb:'1 month of implementation', radar:'Contract ends Nov/26' },
+      { key:'row-roadmap', flow:'Option 1: Dec/26\nOption 2: Jun/27', gemini:'01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication', nb:'01–15 Jun: implementation\n16–30 Jun: QA & adjustments\n01 Jul: CI&Ters communication', radar:'Ongoing' }
     ];
 
+    // ── STATE ──────────────────────────────────────────────────────────
+    const BASE_URL = '<?= serviceUrl ?>';
     let currentLang = '<?= lang ?>' || 'pt';
-    const editMode = { context:false, data:false, hypo:false, opps:true };
-    const notesMem = { context:sections.context.notes, data:sections.data.notes, hypo:sections.hypo.notes, opps:'' };
+    const editMode  = { context: false, data: false, hypo: false, opps: true };
+    const notesMem  = { context: sections.context.notes, data: sections.data.notes, hypo: sections.hypo.notes, opps: '' };
 
-    function esc(s) {
-      return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
-    }
-    function t(k) { return (ui[currentLang]&&ui[currentLang][k])||(ui.en&&ui.en[k])||k; }
+    function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+    function t(key) { return (ui[currentLang]&&ui[currentLang][key])||(ui.en&&ui.en[key])||key; }
 
-    function renderBody(id) {
-      const el = document.getElementById('body-'+id);
+    function renderBody(sectionId) {
+      const el = document.getElementById('body-'+sectionId);
       if (!el) return;
-      if (id === 'platform') { el.innerHTML = buildTable(); return; }
-      const sec = sections[id]; if (!sec) return;
-      const content = notesMem[id]||'', isEditing = editMode[id];
+      if (sectionId === 'platform') { el.innerHTML = buildTable(); return; }
+      const sec = sections[sectionId]; if (!sec) return;
+      const content = notesMem[sectionId]||'', isEditing = editMode[sectionId];
       let h = '<div class="notes-section"><div class="notes-header"><span class="notes-label">'+t('notes-label')+'</span>';
-      if (content && !isEditing) h += '<button class="edit-btn" onclick="startEdit(\''+id+'\')">'+t('edit-btn')+'</button>';
+      if (content && !isEditing) h += '<button class="edit-btn" onclick="startEdit(\''+sectionId+'\')">'+t('edit-btn')+'</button>';
       h += '</div>';
       if (isEditing) {
-        h += '<textarea class="notes-textarea" id="notes-ta-'+id+'" placeholder="'+esc(t('placeholder'))+'">'+esc(content)+'</textarea>';
-        h += '<button class="save-btn" onclick="saveNotes(\''+id+'\')">'+t('save-btn')+'</button>';
+        h += '<textarea class="notes-textarea" id="notes-ta-'+sectionId+'" placeholder="'+esc(t('placeholder'))+'">'+esc(content)+'</textarea>';
+        h += '<button class="save-btn" onclick="saveNotes(\''+sectionId+'\')">'+t('save-btn')+'</button>';
       } else {
         h += '<div class="notes-display">'+esc(content)+'</div>';
       }
@@ -427,8 +442,7 @@ Manutenção alternativa (Notebook LM / Gemini):
 
     function buildTable() {
       let h = '<div class="comparison-wrapper"><table class="comparison-table"><thead><tr>';
-      h += '<th class="th-empty"></th>';
-      h += '<th class="th-flow">Flow Infinity<br><small style="font-weight:400;opacity:0.85">Q&amp;A + Messaging</small></th>';
+      h += '<th class="th-empty"></th><th class="th-flow">Flow Infinity<br><small style="font-weight:400;opacity:0.85">Q&amp;A + Messaging</small></th>';
       h += '<th class="th-gemini">Gemini<br><small style="font-weight:400;opacity:0.85">Q&amp;A only</small></th>';
       h += '<th class="th-nb">Notebook LM<br><small style="font-weight:400;opacity:0.85">Q&amp;A only</small></th>';
       h += '<th class="th-radar">Radar<br><small style="font-weight:400;opacity:0.85">Q&amp;A + Messaging</small></th>';
@@ -444,16 +458,16 @@ Manutenção alternativa (Notebook LM / Gemini):
 
     function toggle(id) { document.getElementById(id).classList.toggle('open'); }
 
-    function startEdit(id) {
-      editMode[id] = true; renderBody(id);
-      const ta = document.getElementById('notes-ta-'+id); if (ta) ta.focus();
+    function startEdit(sectionId) {
+      editMode[sectionId] = true; renderBody(sectionId);
+      const ta = document.getElementById('notes-ta-'+sectionId); if (ta) ta.focus();
     }
 
-    function saveNotes(id) {
-      const ta = document.getElementById('notes-ta-'+id);
-      if (ta) notesMem[id] = ta.value;
-      editMode[id] = !notesMem[id];
-      renderBody(id);
+    function saveNotes(sectionId) {
+      const ta = document.getElementById('notes-ta-'+sectionId);
+      if (ta) notesMem[sectionId] = ta.value;
+      editMode[sectionId] = !notesMem[sectionId];
+      renderBody(sectionId);
     }
 
     function applyLang(l) {
@@ -462,9 +476,13 @@ Manutenção alternativa (Notebook LM / Gemini):
       Object.keys(dict).forEach(id => { const el=document.getElementById(id); if(el) el.textContent=dict[id]; });
       document.getElementById('btn-pt').classList.toggle('active', l==='pt');
       document.getElementById('btn-en').classList.toggle('active', l==='en');
-      ['tab-fases','tab-roadmap','tab-discovery'].forEach(id => {
-        const a=document.getElementById(id); if(a) a.href=a.href.replace(/lang=\w+/,'lang='+l);
+
+      const pageMap = { 'tab-fases': 'fases', 'tab-roadmap': 'roadmap', 'tab-discovery': 'discovery' };
+      Object.keys(pageMap).forEach(id => {
+        const a = document.getElementById(id);
+        if (a) a.href = (BASE_URL || '') + '?page=' + pageMap[id] + '&lang=' + l;
       });
+
       ['context','data','hypo','opps','platform'].forEach(id => renderBody(id));
       try { const u=new URL(window.location.href); u.searchParams.set('lang',l); history.replaceState(null,'',u.toString()); } catch(e){}
     }
@@ -474,5 +492,6 @@ Manutenção alternativa (Notebook LM / Gemini):
     ['context','data','hypo','opps','platform'].forEach(id => renderBody(id));
     applyLang(currentLang);
   </script>
+
 </body>
 </html>
