@@ -110,6 +110,7 @@
     .gantt-phase-row:hover .gantt-row-label { background: var(--ciandt-navy); }
     .gantt-phase-badge { font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 999px; letter-spacing: 0.06em; text-transform: uppercase; margin-left: 8px; flex-shrink: 0; }
     .gantt-task-badge  { font-size: 8px; font-weight: 700; padding: 1px 6px; border-radius: 999px; letter-spacing: 0.05em; text-transform: uppercase; margin-left: 6px; flex-shrink: 0; }
+    .task-owner { font-size: 10px; color: var(--ciandt-grey-dark); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding-left: 18px; line-height: 1.2; }
 
     /* Task row */
     .gantt-task-row { border-bottom: 1px solid var(--ciandt-grey-light); }
@@ -176,10 +177,6 @@
 
   <!-- TAB NAVIGATION -->
   <nav class="tab-nav">
-    <a class="tab-item" href="?page=fases&lang=pt" id="tab-fases">
-      <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><rect x="2" y="2" width="5" height="5" rx="1" fill="currentColor" opacity="0.5"/><rect x="9" y="2" width="5" height="5" rx="1" fill="currentColor"/><rect x="2" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/><rect x="9" y="9" width="5" height="5" rx="1" fill="currentColor" opacity="0.25"/></svg>
-      <span id="txt-tab-fases">Phases</span>
-    </a>
     <a class="tab-item active" href="?page=roadmap&lang=pt" id="tab-roadmap">
       <svg viewBox="0 0 16 16" fill="none" width="15" height="15"><path d="M2 13 L5 5 L9 9 L13 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="13" cy="3" r="1.5" fill="currentColor"/></svg>
       <span id="txt-tab-roadmap">Roadmap</span>
@@ -212,7 +209,6 @@
     <div class="controls-left">
       <div>
         <div class="date-range" id="txt-date-range">—</div>
-        <div class="date-range-sub" id="txt-date-sub">Click a task to see details</div>
       </div>
       <div class="launch-date-wrap">
         <span class="launch-date-label" id="txt-launch-label">Product launch date</span>
@@ -253,7 +249,6 @@
       pt: {
         'txt-project':     'Radar Chatbot · Employee Journey',
         'txt-badge':       'Uso interno',
-        'txt-tab-fases':   'Fases',
         'txt-tab-roadmap': 'Roadmap',
         'txt-tab-discovery':'Discovery',
         'txt-hero-label':  'VISÃO GERAL · LINHA DO TEMPO',
@@ -283,7 +278,6 @@
       en: {
         'txt-project':     'Radar Chatbot · Employee Journey',
         'txt-badge':       'Internal use only',
-        'txt-tab-fases':   'Phases',
         'txt-tab-roadmap': 'Roadmap',
         'txt-tab-discovery':'Discovery',
         'txt-hero-label':  'OVERVIEW · TIMELINE',
@@ -521,7 +515,8 @@
 
         // Task rows
         phase.tasks.forEach(task => {
-          bodyHtml += `<div class="gantt-row gantt-task-row" style="height:${ROW_H_TASK}px">`;
+          const rowH = task.owner ? ROW_H_TASK + 14 : ROW_H_TASK;
+          bodyHtml += `<div class="gantt-row gantt-task-row" style="height:${rowH}px">`;
           // Label
           const indent = task.isMilestone
             ? `<span class="milestone-dot"></span>`
@@ -529,9 +524,15 @@
           const taskBadge = task.status
             ? `<span class="gantt-task-badge" style="${statusStyle(task.status)}">${statusLabel(task.status)}</span>`
             : '';
-          bodyHtml += `<div class="gantt-row-label">${indent}<span class="label-text">${task.name}</span>${taskBadge}</div>`;
+          const ownerLine = task.owner
+            ? `<span class="task-owner">${task.owner}</span>`
+            : '';
+          bodyHtml += `<div class="gantt-row-label" style="flex-direction:column;align-items:flex-start;justify-content:center;gap:2px">
+            <div style="display:flex;align-items:center;width:100%;overflow:hidden">${indent}<span class="label-text">${task.name}</span>${taskBadge}</div>
+            ${ownerLine}
+          </div>`;
           // Bar area
-          bodyHtml += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${ROW_H_TASK}px">`;
+          bodyHtml += `<div class="gantt-bar-area" style="width:${timelineW}px;height:${rowH}px">`;
 
           if (task.startDate) {
             const sx = _daysBetween(viewStart, _isoToDate(task.startDate)) * PX_PER_DAY;
@@ -614,7 +615,7 @@
       });
       document.getElementById('btn-pt').classList.toggle('active', l === 'pt');
       document.getElementById('btn-en').classList.toggle('active', l === 'en');
-      const pageMap = { 'tab-fases': 'fases', 'tab-roadmap': 'roadmap', 'tab-discovery': 'discovery' };
+      const pageMap = { 'tab-roadmap': 'roadmap', 'tab-discovery': 'discovery' };
       Object.keys(pageMap).forEach(id => {
         const a = document.getElementById(id);
         if (a) a.href = (BASE_URL || '') + '?page=' + pageMap[id] + '&lang=' + l;
@@ -634,26 +635,26 @@
       launchDate: '2026-11-30',
       phases: [
         { id: 1, name: 'Phase 1 — Foundation', status: 'IN PROGRESS', tasks: [
-          { name: 'Employee journey mapping',         isMilestone: false, status: 'IN PROGRESS', startDate: '2026-07-01', endDate: '2026-07-31' },
-          { name: 'Scope alignment with stakeholders',isMilestone: false, status: 'IN PROGRESS', startDate: '2026-07-10', endDate: '2026-07-25' },
-          { name: 'PMO governance charter',           isMilestone: false, status: 'IN PROGRESS', startDate: '2026-07-15', endDate: '2026-07-25' },
-          { name: 'Official project kickoff',         isMilestone: true,  status: 'IN PROGRESS', startDate: '2026-07-31', endDate: null }
+          { name: 'Employee journey mapping',         isMilestone: false, startDate: '2026-07-01', endDate: '2026-07-31' },
+          { name: 'Scope alignment with stakeholders',isMilestone: false, startDate: '2026-07-10', endDate: '2026-07-25' },
+          { name: 'PMO governance charter',           isMilestone: false, startDate: '2026-07-15', endDate: '2026-07-25' },
+          { name: 'Official project kickoff',         isMilestone: true,  startDate: '2026-07-31', endDate: null }
         ]},
         { id: 2, name: 'Phase 2 — Expansion', status: 'PLANNED', tasks: [
-          { name: 'Onboarding flows in chatbot',  isMilestone: false, status: 'PLANNED', startDate: '2026-09-01', endDate: '2026-10-07' },
-          { name: 'Benefits & FAQ flows',         isMilestone: false, status: 'PLANNED', startDate: '2026-09-15', endDate: '2026-10-07' },
-          { name: 'Communication plan — Phase 2', isMilestone: false, status: 'PLANNED', startDate: '2026-09-01', endDate: '2026-09-21' },
-          { name: 'Phase 2 launch',               isMilestone: true,  status: 'PLANNED', startDate: '2026-10-07', endDate: null }
+          { name: 'Onboarding flows in chatbot',  isMilestone: false, startDate: '2026-09-01', endDate: '2026-10-07' },
+          { name: 'Benefits & FAQ flows',         isMilestone: false, startDate: '2026-09-15', endDate: '2026-10-07' },
+          { name: 'Communication plan — Phase 2', isMilestone: false, startDate: '2026-09-01', endDate: '2026-09-21' },
+          { name: 'Phase 2 launch',               isMilestone: true,  startDate: '2026-10-07', endDate: null }
         ]},
         { id: 3, name: 'Phase 3 — Depth', status: 'PLANNED', tasks: [
-          { name: 'System integrations (PTO, payroll)', isMilestone: false, status: 'PLANNED', startDate: '2026-10-18', endDate: '2026-11-23' },
-          { name: 'Career & development flows',         isMilestone: false, status: 'PLANNED', startDate: '2026-10-18', endDate: '2026-11-23' },
-          { name: 'Phase 3 launch',                     isMilestone: true,  status: 'PLANNED', startDate: '2026-11-23', endDate: null }
+          { name: 'System integrations (PTO, payroll)', isMilestone: false, startDate: '2026-10-18', endDate: '2026-11-23' },
+          { name: 'Career & development flows',         isMilestone: false, startDate: '2026-10-18', endDate: '2026-11-23' },
+          { name: 'Phase 3 launch',                     isMilestone: true,  startDate: '2026-11-23', endDate: null }
         ]},
         { id: 4, name: 'Phase 4 — Sensitive', status: 'TO BE DEFINED', tasks: [
-          { name: 'Sensitive flow mapping',        isMilestone: false, status: 'TO BE DEFINED', startDate: null, endDate: null },
-          { name: 'Legal & compliance validation', isMilestone: false, status: 'TO BE DEFINED', startDate: null, endDate: null },
-          { name: 'Phase 4 launch',                isMilestone: true,  status: 'TO BE DEFINED', startDate: null, endDate: null }
+          { name: 'Sensitive flow mapping',        isMilestone: false, startDate: null, endDate: null },
+          { name: 'Legal & compliance validation', isMilestone: false, startDate: null, endDate: null },
+          { name: 'Phase 4 launch',                isMilestone: true,  startDate: null, endDate: null }
         ]}
       ]
     };
